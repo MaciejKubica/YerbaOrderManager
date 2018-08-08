@@ -1,0 +1,66 @@
+<h1><span class="glyphicon glyphicon-modal-window" ></span> Create new order</h1>
+<div class="container-fluid">
+    <form (submit)="onCreate()">
+      <div class="form-group">
+        <label for="orderDate">OrderDate:</label>        
+        <div class='input-group date' id='datetimepicker1'>
+          <input type='text' class="form-control" a2e-datetimepicker [(ngModel)]="order.orderDate" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="selectedUser">Order executed by:</label>
+        <select class="form-control" [(ngModel)]="selectedUserExecutedBy" id="selectedUser" (change)="onChangeExecutedBy($event.target.value)">
+          <option *ngFor="let user of users" [value]="user.id">{{user.email}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <h2 for="yerbaAdder">Add new order item:</h2>
+        <app-yerbaadder (notify)="onNotify($event)" name="yerbaAdder"></app-yerbaadder>
+      </div>
+
+      <div class="form-group">
+        <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+          <th>User</th>
+          <th>Yerba</th>
+          <th>Quantity</th>
+          <th>Paid</th>          
+          <th>Cost</th>
+          <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let orderItem of orderItems">
+            <td>{{ orderItem.userId }}</td>
+            <td><a [href]="onGetYerba(orderItem.yerbaId).url" data-toggle="tooltip" [title]="onGetYerba(orderItem.yerbaId).description" target="blank">{{onGetYerba(orderItem.yerbaId).name}}</a></td>
+            <td>{{ orderItem.quantity }}</td>
+            <td>{{ orderItem.isPaid }}</td>
+            <td>{{ orderItem.cost  | currency:'PLN':true:'2.2-4' }}</td>
+            <td>{{ orderItem.cost * orderItem.quantity  | currency:'PLN':true:'2.2-4' }}</td>
+            <td>             
+              <button class="btn btn-danger btn-sm" (click)="deleteOrderItem(orderItem)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+     
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="closed" [(ngModel)]="order.isClosed" id="checkBoxClosed" />
+        <label for="checkBoxClosed">Closed</label>
+      </div>
+
+      <div class="form-group">
+        <div>Total Cost: {{totalcost  | currency:'PLN':true:'2.2-4'}}</div>        
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Create" />
+        <a [routerLink]='["/orders"]' class="btn btn-default">Cancel</a>
+      </div>
+    </form>
+   </div>

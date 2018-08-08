@@ -1,0 +1,177 @@
+<h1><span class="glyphicon glyphicon-cog"></span> User settings</h1>
+<form #theForm="ngForm" novalidate>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required ngModel email />
+          <div *ngIf="email.invalid && (email.dirty || email.touched)"
+               class="alert alert-danger">
+
+            <div *ngIf="email.errors.required">
+              Email is required.
+            </div>
+            <div *ngIf="email.errors.email">
+              Email is not proper
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="user.name" #name="ngModel" required pattern="^[a-zA-Z0-9]*$" />
+          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+               class="alert alert-danger">
+
+            <div *ngIf="name.errors.required">
+              Name is required.
+            </div>
+            <div *ngIf="name.errors.pattern">
+              Name should have letters
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10">
+        <div class="form-group">
+          <label for="bankAccount">Bank account number:</label>
+          <input type="text" class="form-control" name="bankAccount" [(ngModel)]="user.bankAccount" #bankAccount="ngModel" minlength="11" maxlength="17" />
+          <div *ngIf="bankAccount.invalid && (bankAccount.dirty || bankAccount.touched)"
+               class="alert alert-danger">
+
+            <div *ngIf="bankAccount.errors.minlength">
+              Bank account to short
+            </div>
+            <div *ngIf="bankAccount.errors.maxlength">
+              Bank account to long
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group bottom-right">
+          <input type="submit" class="btn btn-primary btn-large" value="Change settings" (click)="onChangeSettings()" [disabled]="bankAccount.invalid || name.invalid || email.invalid" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>User options</h3>
+      <div class="col-md-2">
+        <div class="form-inline bottom-right">
+          <input type="submit" class="btn btn-info btn-large" value="Make me next order token" (click)="onMakeToken()" />
+        </div>
+      </div>
+        <div class="col-md-2">
+          <div class="form-inline bottom-right">
+            <input type="submit" class="btn btn-primary btn-large" value="Create new order" (click)="onCreateNewOrder()" />
+          </div>
+          </div>        
+      </div>
+    <br />
+    <div class="row" ngModelGroup="account" password-matcher #account="ngModelGroup">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="password">Old Password:</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="retypeOldPassword" #password="ngModel" (blur)="onCheckPassword()" /> <!--equalTo="{{user.password}}" "-->
+          <div *ngIf="changePasswordFails"
+               class="alert alert-danger">
+            Password change fails. Check old password
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="newPassword">New Password:</label>
+          <input type="password" class="form-control" name="newPassword" [(ngModel)]="newPassword" #newpassword="ngModel" />
+          <password-strength-bar [passwordToCheck]="newPassword" [barLabel]="barLabel"></password-strength-bar>
+          <div *ngIf="account.control?.errors"
+               class="alert alert-danger">
+            Passwords are match. Pick another one
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group bottom-right">
+          <input type="submit" class="btn btn-success btn-large" value="Change password" (click)="onChangePassword()" [disabled]="account.control?.errors || password.invalid " />
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <div class="row-md-12" *ngIf="userOrders">
+      <h2>Order create by user:</h2>
+      <table class="table table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>Order</th>
+            <th>Order date</th>
+            <th>Order executed by</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of userOrders">
+            <td>{{ order.id }}</td>
+            <td>{{ order.created | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
+            <td>{{ order.userExecutedBy.name }}</td>
+            <td>{{ order.totalQuantity }}</td>
+            <td>{{ order.totalCost | currency:'PLN':true:'2.2-4' }}</td>
+            <td><button class="btn btn-primary btn-sm" (click)="closeOrder(order)">Close</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <br /><br />
+    <div class="row-md-12" *ngIf="userOrderItems">
+      <h2>Order items:</h2>
+      <div>Subtotal: {{subtotal | currency:'PLN':true:'2.2-4'}}</div>
+      <div>Quantity: {{sumquantity}}</div>
+      <table class="table table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>Order</th>
+            <th>Order date</th>
+            <th>Order made by</th>
+            <th>Order executed by</th>
+            <th>Yerba</th>
+            <th>Yerba producer</th>
+            <th>Yerba mark</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let orderItem of userOrderItems">
+            <td>{{ orderItem.orderId }}</td>
+            <td>{{ onGetOrderDetail(orderItem.orderId).created | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
+            <td>{{ onGetOrderDetail(orderItem.orderId).userMadeBy.name }}</td>
+            <td>{{ onGetOrderDetail(orderItem.orderId).userExecutedBy.name }}</td>
+            <td><a [href]="onGetYerba(orderItem.yerbaId).url" data-toggle="tooltip" [title]="onGetYerba(orderItem.yerbaId).description" target="blank">{{onGetYerba(orderItem.yerbaId).name}}</a></td>
+            <td>{{ onGetYerba(orderItem.yerbaId).producent}}</td>
+            <td>{{ onGetYerba(orderItem.yerbaId).mark}}</td>
+            <td>{{ orderItem.quantity }}</td>
+            <td>{{ orderItem.cost | currency:'PLN':true:'2.2-4' }}</td>
+            <td>{{ orderItem.cost * orderItem.quantity | currency:'PLN':true:'2.2-4' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row" *ngIf="!userOrderItems">
+      No elements to display
+    </div>
+
+  </div>
+</form>

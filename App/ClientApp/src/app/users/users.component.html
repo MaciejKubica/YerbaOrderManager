@@ -1,0 +1,28 @@
+<h1><span class="glyphicon glyphicon-user"></span> Users</h1>
+<div>
+  <button class="btn btn-success btn-sm" (click)="createUser()">Create new user</button>
+</div>
+<p *ngIf="!users"><em>Loading...</em></p>
+
+<table class='table' *ngIf="users">
+  <thead>
+  <tr>
+    <th>Email</th>
+    <th>Name</th>
+    <th>Is going to buy next order</th>
+    <th>Bank account</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.email }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.orderToken }}</td>
+      <td>{{ user.bankAccount }}</td>
+      <td>
+        <button class="btn btn-warning btn-sm" (click)="editUser(user)">Edit</button>
+        <button class="btn btn-danger btn-sm" (click)="deleteUser(user)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,41 @@
+<h1>Welcome to your Complex Yerba Order Manager CYOM</h1>
+<p>The system is helpful for ordering yerbas for many users. The purpose is to make an order by one user which have token to make and order yerba from Allegro. </p>
+<ul>
+  <li>If you want to create new order make yourself a token. <a [routerLink]='["/userpanel"]'>User panel</a></li>
+  <li>If administrator already set you a token go and <a [routerLink]='["/createorder"]'>create order</a> </li>
+</ul>
+<div *ngIf="loginRequired">
+  <a [routerLink]='["/login"]'>Login to</a> system to have more detailed information
+</div>
+<div *ngIf="!loginRequired">
+  <p>Below is the list of current orders select one and add your yerba if you want:</p>
+  <table class='table' *ngIf="orders">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Date</th>
+      <th>Created on</th>
+      <th>Made by</th>
+      <th>Executed by</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.id }}</td>
+      <td>{{ order.date | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
+      <td>{{ order.created | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
+      <td>{{ order.userMadeBy.name }}</td>
+      <td>{{ order.userExecutedBy.name }}</td>
+      <td>
+        <button class="btn btn-primary btn-sm" [disabled]="!hideCloseOrder(order.userMadeBy.email)" (click)="closeOrder(order)">Close</button>
+        <button class="btn btn-success btn-sm" [disabled]="order.isClosed" (click)="addOrderItem(order)">Add Yerba to order</button>
+        <button class="btn btn-danger btn-sm" (click)="showSummary(order)">Show summary</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div *ngIf="orders == null || orders.length == 0">
+    There is no open orders.
+  </div>
+
+</div>

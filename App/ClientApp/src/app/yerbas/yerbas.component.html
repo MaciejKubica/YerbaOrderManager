@@ -1,0 +1,30 @@
+<h1><span class="glyphicon glyphicon-grain"></span> Yerbas</h1>
+<div>
+  <button class="btn btn-success btn-sm" *ngIf="hiddeButton" (click)="createYerba()">Create new yerba</button>
+</div>
+<p *ngIf="!yerbas"><em>Loading...</em></p>
+
+<table class='table' *ngIf="yerbas">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mark</th>
+      <th>Producent</th>
+      <th>Country</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let yerba of yerbas">
+      <td><a [href]="yerba.url" data-toggle="tooltip" [title]="yerba.description" target="blank">{{ yerba.name }} </a></td>
+      <td>{{ yerba.mark }}</td>
+      <td>{{ yerba.producent }}</td>
+      <td>{{ yerba.country }}</td>
+      <td>{{ yerba.cost  | currency:'PLN':true:'2.2-4' }}</td>
+      <td>
+        <button class="btn btn-warning btn-sm" *ngIf="hiddeButton" (click)="editYerba(yerba)">Edit</button>
+        <button class="btn btn-danger btn-sm" *ngIf="hiddeButton"  (click)="deleteYerba(yerba)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,72 @@
+<div class="row">
+  <h1><span class="glyphicon glyphicon-user"></span>Create New/Update user</h1>
+  <div class="col-md-5">
+    <form (submit)="onCreate()" #theForm="ngForm" invalidate>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" name="email" [(ngModel)]="usertoadd.email" email #email="ngModel" />
+        <div *ngIf="email.invalid && (email.dirty || email.touched)"
+             class="alert alert-danger">
+          <div *ngIf="email.errors.required">
+            Email is required.
+          </div>
+          <div *ngIf="email.errors.email">
+            Email is not proper
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="usertoadd.name" required pattern="^[a-zA-Z0-9]*$" #name="ngModel" />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="name.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="name.errors.pattern">
+            Name should have letters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="userPassword">Password:</label>
+        <input type="password" class="form-control" name="userPassword" [(ngModel)]="usertoadd.password" required #userpassword="ngModel" />
+        <password-strength-bar [passwordToCheck]="usertoadd.password" [barLabel]="barLabel"></password-strength-bar>
+      </div>
+
+      <div class="form-group">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" name="lockoutenabled" [(ngModel)]="usertoadd.lockoutenabled" id="checkBoxLocked" />
+          <label class="col-form-label" for="checkBoxLocked">Lock user</label>          
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="bankAccount">Bank account number:</label>
+        <input type="text" class="form-control" name="bankAccount" [(ngModel)]="usertoadd.bankAccount" minlength="11" maxlength="17" #bankAccount="ngModel" />
+        <div *ngIf="bankAccount.invalid && (bankAccount.dirty || bankAccount.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="bankAccount.errors.minlength">
+            Bank account to short
+          </div>
+          <div *ngIf="bankAccount.errors.maxlength">
+            Bank account to long
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <h2>Roles:</h2>
+      <div class="form-group" *ngFor="let role of roleSelections">
+        <input type="checkbox" [value]="role.isChecked" [checked]="role.isChecked" (change)="$event.target.checked ? role.isChecked = true : role.isChecked = false"> {{role.name}}
+      </div>
+
+      <div class="form-group">
+        <input type="submit" class="btn btn-success" value="{{openForEdit ? 'Update' : 'Create'}}" [disabled]="theForm.invalid" />
+        <a [routerLink]='["/users"]' class="btn btn-default">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<h1><span class="glyphicon glyphicon-modal-window"></span> All Orders</h1>
+<div>
+  <button class="btn btn-success btn-sm" (click)="createOrder()">Create new user</button>
+</div>
+<p *ngIf="!orders"><em>Loading...</em></p>
+
+<table class='table' *ngIf="orders">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Date</th>
+      <th>Created on</th>
+      <th>Made by</th>
+      <th>Executed by</th>
+      <th>Total Qnt</th>
+      <th>Total Cost</th>
+      <th>Closed</th>
+      <th>Paid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.id }}</td>
+      <td>{{ order.date | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
+      <td>{{ order.created | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
+      <td>{{ order.userMadeBy.name }}</td>
+      <td>{{ order.userExecutedBy.name }}</td>
+      <td>{{ order.totalQuantity }}</td>
+      <td>{{ order.totalCost | currency:'PLN':true:'2.2-4' }}</td>
+      <td>{{ order.isClosed }}</td>
+      <td>{{ order.isPaid }}</td>
+      <td>
+        <button class="btn btn-primary btn-sm" *ngIf="hiddeButton" (click)="closeOrder(order)">Close</button>
+        <button class="btn btn-danger btn-sm" *ngIf="hiddeButton" (click)="deleteOrder(order)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
