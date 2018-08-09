@@ -220,7 +220,8 @@ export class DataService {
 
     return this.http.get("/api/ordermanager/getloggeduserdata", { headers })
       .map((data: any[]) => {
-        this.userData = data;
+       localStorage.setItem("LoggedUser", JSON.stringify(data));
+
         return true;
       }, error => console.error(error));
   }
@@ -310,6 +311,7 @@ export class DataService {
     this.token = "";
     this.tokenExpiration = new Date();
     this.loggedUserRoles = null;
+    localStorage.clear();
   }
 
   isInRole(role: string): boolean {
@@ -334,6 +336,43 @@ export class DataService {
         this.rolesInSystem = data;
         return true;
       }, error => console.error(error));
+  }
+
+  //Paiments
+
+  paimentsRequests: any[];
+
+  public getPaimentsRequests() {
+
+    let headers = new HttpHeaders()
+      .set("Authorization", "Bearer " + this.token);
+
+    return this.http.get("/api/ordermanager/getpaimentsrequests", { headers })
+      .map((data: any[]) => {
+        this.paimentsRequests = data;
+        return true;
+      }, error => console.error(error));
+  }
+
+  public confirmPaimentRequest(paimentRequest: any) {
+    let headers = new HttpHeaders()
+      .set("Content-Type", "application/json")
+    .set("Authorization", "Bearer " + this.token);
+
+    var jsonString = JSON.stringify(paimentRequest);
+    console.log(jsonString);
+    return this.http.post("/api/ordermanager/confirmpaimentrequest", jsonString, { headers });     
+  }
+
+  public createPaimentRequest(paimentRequest: any): Observable<boolean> {
+    let headers = new HttpHeaders()
+      .set("Content-Type", "application/json")
+    .set("Authorization", "Bearer " + this.token);
+
+    var jsonString = JSON.stringify(paimentRequest);
+    console.log(jsonString);
+    return this.http.post("/api/ordermanager/createpaimentrequest", jsonString, { headers })
+      .map((response: any) => { return true; });     
   }
 
 }

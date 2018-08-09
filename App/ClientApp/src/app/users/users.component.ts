@@ -24,7 +24,7 @@ export class UsersComponent implements OnInit {
   loadUsers() {
     this.data.loadUsers().subscribe(success => {
       if (success) {
-        this.users = this.data.users;
+        this.users = this.data.users.filter(x => x.isDeleted == false);
       } else {
         console.log("Not loaded");
       }

@@ -46,6 +46,12 @@ export class UserPanelComponent implements OnInit {
   public yerbas = [];
   public orders = [];
   public userOrders = [];
+  public paiments = [];
+
+   public paimentRequest = {
+      orderitemid: 0,
+      userid: 0
+  };
 
   public barLabel: string = "Password strength:";
 
@@ -60,18 +66,26 @@ export class UserPanelComponent implements OnInit {
   public newPassword: any;
   public retypeOldPassword: any;
 
-  getUserData() {
-    this.data.getLoggedUserData().subscribe(success => {
-      if (success) {
-        this.user = this.data.userData;
-      }
-    });
-  }
+  //getUserData() {
+  //  this.data.getLoggedUserData().subscribe(success => {
+  //    if (success) {
+  //      this.user = this.data.userData;
+  //    }
+  //  });
+  //}
 
   getOrderItems() {
     this.data.getLoggedUserOrderItems().subscribe(success => {
       if (success) {
         this.userOrderItems = this.data.ordersItems.filter(oi => oi.isPaid === false);
+      }
+    });
+  }
+
+  getPaiments() {
+    this.data.getPaimentsRequests().subscribe(success => {
+      if (success) {
+        this.paiments = this.data.paimentsRequests.filter(oi => oi.userId === this.user.id);
       }
     });
   }
@@ -135,7 +149,7 @@ export class UserPanelComponent implements OnInit {
     this.data.loadAllOrders().subscribe(success => {
       if (success) {
         this.orders = this.data.orders;
-        this.userOrders = this.data.orders.filter(x => x.madeBy === this.data.userData.id && !x.isClosed);
+        this.userOrders = this.data.orders.filter(x => x.madeBy === this.user.id && !x.isClosed);
       } else {
         console.log("Not loaded");
       }
@@ -149,7 +163,6 @@ export class UserPanelComponent implements OnInit {
       } else {
         this.loadAllOrders();
       }
-
     });
   }
 
@@ -161,9 +174,26 @@ export class UserPanelComponent implements OnInit {
     this.router.navigate(["/createorder"]);
   }
 
+  checkIsPaid(orderItem: any) {  
+    return this.paiments.find(x => x.orderItemId == orderItem.id) != null;
+  }
+
+  sendPaimentRequest(orderItem: any) {    
+    this.paimentRequest.orderitemid = orderItem.id;
+    this.paimentRequest.userid = this.user.id;
+
+    this.data.createPaimentRequest(this.paimentRequest).subscribe(success => {
+      if (success) {
+        this.getPaiments();        
+        this.getOrderItems();
+      }
+    });
+  }
+
   ngOnInit(): void {
-    this.getUserData();
+    this.user = JSON.parse(localStorage.getItem("LoggedUser"));
     this.loadYerbas();
+    this.getPaiments();
     this.loadAllOrders();
     this.getOrderItems();
   }

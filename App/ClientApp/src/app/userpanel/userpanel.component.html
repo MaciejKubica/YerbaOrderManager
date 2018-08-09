@@ -164,6 +164,10 @@
             <td>{{ orderItem.quantity }}</td>
             <td>{{ orderItem.cost | currency:'PLN':true:'2.2-4' }}</td>
             <td>{{ orderItem.cost * orderItem.quantity | currency:'PLN':true:'2.2-4' }}</td>
+            <td>
+              <button class="btn btn-warning btn-sm" *ngIf="!checkIsPaid(orderItem)" (click)="sendPaimentRequest(orderItem)">I Paid it</button>
+              <button class="btn btn-success btn-sm" *ngIf="checkIsPaid(orderItem)" disabled>Paied</button>
+            </td>
           </tr>
         </tbody>
       </table>

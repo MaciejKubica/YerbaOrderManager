@@ -23,6 +23,8 @@ namespace App.Data.Entities
 
         public int AccessFailedCount { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public IEnumerable<Role> UserRoles { get; set; }
 
     }

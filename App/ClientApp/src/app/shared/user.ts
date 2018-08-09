@@ -10,5 +10,6 @@ export class User {
   lockoutEndDateUtc: Date;
   lockoutEnabled: boolean;
   accessFailedCount: number;
+  isDeleted: boolean;
   roles: Role[];
 }

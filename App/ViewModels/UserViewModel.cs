@@ -31,6 +31,8 @@ namespace App.ViewModels
 
         public int AccessFailedCount { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public IEnumerable<RolesViewModel> Roles { get; set; }
 
         public override string ToString()

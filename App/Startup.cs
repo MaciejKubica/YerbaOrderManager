@@ -45,11 +45,11 @@ namespace App
 
                 // Password settings
                 options.Password.RequireDigit = false;
-                //options.Password.RequiredLength = 8;
-                //options.Password.RequiredUniqueChars = 2;
-                //options.Password.RequireLowercase = true;
-                //options.Password.RequireNonAlphanumeric = true;
-                //options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequiredUniqueChars = 2;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
             }).AddDefaultTokenProviders();
 
 
@@ -63,7 +63,7 @@ namespace App
                     "Roles",
                     "UserRoles",
                     "Claims",
-                    true
+                    false
                     );
 
             });

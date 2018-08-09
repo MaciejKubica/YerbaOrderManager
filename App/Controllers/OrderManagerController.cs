@@ -502,6 +502,91 @@ namespace App.Controllers
             }
         }
 
+        [HttpGet("[action]")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult GetPaimentsRequests()
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {                    
+                    return Ok(_mapper.Map<IEnumerable<PaimentRequest>, IEnumerable<PaimentRequestsViewModel>>(_databaseRepository.GetPaimentRequests()));
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to receive all paiments from database or mapping fails: ", ex);
+                return BadRequest(ex);
+            }
+        }
+
+
+        [HttpPost("[action]")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult ConfirmPaimentRequest([FromBody] ConfirmPaimentRequest model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (_databaseRepository.ConfirmPaimentRequest(model.OrderItemId, model.UserId))
+                    {
+                        return Ok();
+                    }
+                    else
+                    {
+                        return NotFound($"There is no paiment for that parameters: {model.OrderItemId}, {model.UserId}");
+                    }
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("Failed to get users {0}", e);
+                return BadRequest(e);
+            }
+        }
+
+
+        [HttpPost("[action]")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult CreatePaimentRequest([FromBody] ConfirmPaimentRequest model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (_databaseRepository.CreateNewPaimentRequest(model.OrderItemId, model.UserId))
+                    {
+                        return Created("", model);
+                    }
+                    else
+                    {
+                        return BadRequest($"There was a problem with new paiment creation: {model.OrderItemId}, {model.UserId}");
+                    }
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("Failed to get users {0}", e);
+                return BadRequest(e);
+            }
+        }
+
+
         [HttpPost("[action]")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult UpdateOrderItems([FromBody] OrderItemViewModel[] model)

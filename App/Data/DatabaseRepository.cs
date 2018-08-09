@@ -28,7 +28,7 @@ namespace App.Data
                 connection.Open();
 
                 var users = connection.Query<User>(
-                    "SELECT Email, Name, Password, OrderTokenLocker, BankAccount, Id, LockoutEndDateUtc, LockoutEnabled, AccessFailedCount FROM Users ORDER BY Id desc");
+                    "SELECT Email, Name, Password, OrderTokenLocker, BankAccount, Id, LockoutEndDateUtc, LockoutEnabled, AccessFailedCount, IsDeleted FROM Users ORDER BY Id desc");
 
                 foreach (var user in users)
                 {
@@ -49,7 +49,7 @@ namespace App.Data
                 parameter.Add("@Email", email, DbType.AnsiString);
 
                 var user = connection.QueryFirst<User>(
-                    $"SELECT Email, Name, Password, OrderTokenLocker, BankAccount, Id, LockoutEndDateUtc, LockoutEnabled, AccessFailedCount FROM Users WHERE Email = @Email ORDER BY Id desc", parameter);
+                    $"SELECT Email, Name, Password, OrderTokenLocker, BankAccount, Id, LockoutEndDateUtc, LockoutEnabled, AccessFailedCount, IsDeleted FROM Users WHERE Email = @Email ORDER BY Id desc", parameter);
 
                 user.UserRoles = this.GetRolesForUser(user.Id);
 
@@ -584,6 +584,58 @@ namespace App.Data
 
                 return connection.Query<Role>(
                     $"SELECT r.* FROM Roles r JOIN UserRoles ur ON r.Id == ur.RoleId WHERE ur.UserId = @UserId", roleParamteres);
+            }
+        }
+
+        public IEnumerable<PaimentRequest> GetPaimentRequests()
+        {
+            using (var connection = new SQLiteConnection(_connectionString))
+            {
+                connection.Open();
+
+                return connection.Query<PaimentRequest>(
+                    $"SELECT * FROM PaimentRequests");
+            }
+        }
+
+        public bool CreateNewPaimentRequest(int orderItemId, int userId)
+        {
+            using (var connection = new SQLiteConnection(_connectionString))
+            {
+                connection.Open();
+
+                DynamicParameters createNewPaimentParameters = new DynamicParameters();
+                createNewPaimentParameters.Add("@UserId", userId, DbType.Int32);
+                createNewPaimentParameters.Add("@OrderItemId", orderItemId, DbType.Int32);
+
+
+                var newId = connection.QueryFirst<int>(
+                    "INSERT INTO PaimentRequests (UserId, OrderItemId) VALUES (@UserId, @OrderItemId); SELECT last_insert_rowid()", createNewPaimentParameters);
+                
+                return newId > 0;
+            }
+        }
+
+        public bool ConfirmPaimentRequest(int orderItemId, int userId)
+        {
+            using (var connection = new SQLiteConnection(_connectionString))
+            {
+                connection.Open();
+
+                DynamicParameters confirmParamteres = new DynamicParameters();
+                confirmParamteres.Add("@UserId", userId, DbType.Int32);
+                confirmParamteres.Add("@OrderItemId", orderItemId, DbType.Int32);
+
+
+                var executeResult = connection.Execute(
+                    "DELETE PaimentRequests WHERE UserId = @UserId AND OrderItemId = @OrderItemId)", confirmParamteres);
+
+                if(executeResult > 0)
+                {
+                    connection.Execute("UPDATE OrderItem SET Paid = 1 WHERE Id = @OrderItemId", confirmParamteres);
+                }
+
+                return true;
             }
         }
     }

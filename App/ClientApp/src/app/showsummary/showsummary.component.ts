@@ -31,7 +31,7 @@ export class ShowSummaryComponent implements OnInit {
   calculatedBill: any;
 
   ngOnInit(): void {
-    this.getUserData();
+    this.currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
     this.loadUsers();
     this.loadYerbas();       
     if (this.activatedRouter.queryParams) {
@@ -58,13 +58,13 @@ export class ShowSummaryComponent implements OnInit {
     this.usertoPay = this.users.find(x => x.id == this.currentOrder.executedBy);
   }
 
-  getUserData() {
-    this.data.getLoggedUserData().subscribe(success => {
-      if (success) {
-        this.currentUser = this.data.userData;
-      }
-    });
-  }
+  //getUserData() {
+  //  this.data.getLoggedUserData().subscribe(success => {
+  //    if (success) {
+  //      this.currentUser = this.data.userData;
+  //    }
+  //  });
+  //}
 
   loadUsers() {
     this.data.loadUsers().subscribe(success => {

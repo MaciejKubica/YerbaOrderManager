@@ -57,6 +57,16 @@ namespace App.Data
         bool SetNextOrderLockerForUser(string email);
 
         void UpdateOrderItems(OrderItem[] orderItem);
+        
+        // PaimentREquests
+
+        IEnumerable<PaimentRequest> GetPaimentRequests();
+
+        bool CreateNewPaimentRequest(int orderItemId, int userId);
+
+        bool ConfirmPaimentRequest(int orderItemId, int userId);
+
+        // Roles
 
         IEnumerable<Role> GetAllRoles();
 

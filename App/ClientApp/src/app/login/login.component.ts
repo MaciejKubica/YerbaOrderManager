@@ -22,9 +22,14 @@ export class LoginComponent {
     this.data.login(this.creds)
       .subscribe(success => {
         if (success) {
+
+          this.data.getLoggedUserData().subscribe(success => {
+          });
+
           this.router.navigate(["/userpanel"]);
         }
         },
-        err => this.errorMessage = "Failed to login ");
+      err => this.errorMessage = "Failed to login ");
+
   }
 }
