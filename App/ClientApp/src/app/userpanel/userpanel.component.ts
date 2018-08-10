@@ -3,7 +3,7 @@ import { DataService } from "../shared/dataService";
 import { Router } from "@angular/router";
 import { PasswordStrengthBar } from '../passwordStrengthBar';
 import { User } from '../shared/user';
-import { Order } from '../shared/order'
+import { Order, OrderItem } from '../shared/order'
 import * as _ from "lodash";
 import { NG_VALIDATORS, AbstractControl } from "@angular/forms";
 import { ChangePassword } from '../shared/changepassword';
@@ -66,14 +66,6 @@ export class UserPanelComponent implements OnInit {
   public newPassword: any;
   public retypeOldPassword: any;
 
-  //getUserData() {
-  //  this.data.getLoggedUserData().subscribe(success => {
-  //    if (success) {
-  //      this.user = this.data.userData;
-  //    }
-  //  });
-  //}
-
   getOrderItems() {
     this.data.getLoggedUserOrderItems().subscribe(success => {
       if (success) {
@@ -103,7 +95,7 @@ export class UserPanelComponent implements OnInit {
     let changePassword = new ChangePassword();
 
     changePassword.email = this.user.email;
-    changePassword.oldPassword = this.retypeOldPassword
+    changePassword.oldPassword = this.retypeOldPassword;
     changePassword.newPassword = this.newPassword;
 
     this.data.changeUserPassword(changePassword).subscribe(success => {

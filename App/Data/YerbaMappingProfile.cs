@@ -27,6 +27,9 @@ namespace App.Data
             CreateMap<User, UserViewModel>()
                 .ForMember(o => o.Roles, ex => ex.MapFrom(o => o.UserRoles));
 
+            CreateMap<OrderItemViewModel, OrderItem>()
+                .ForMember(o => o.UserDetails, ex => ex.Ignore());
+
         }
 
     }

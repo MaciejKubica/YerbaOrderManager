@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core"
 import { DataService } from "../shared/dataService"
 import { ActivatedRoute, Router } from "@angular/router"
 import { User } from '../shared/user'
-import { Order } from '../shared/order';
+import { Order, OrderItem } from '../shared/order';
 import { Observable } from "rxjs/Observable";
 import * as _ from "lodash";
 
@@ -28,12 +28,14 @@ export class ShowSummaryComponent implements OnInit {
 
   users: any[];
   yerbas: any[];
+  paiments: any[];
   calculatedBill: any;
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
     this.loadUsers();
-    this.loadYerbas();       
+    this.loadYerbas();
+    this.getPaiments();
     if (this.activatedRouter.queryParams) {
       this.activatedRouter.queryParams.subscribe(params => {
         if (params["id"]) {
@@ -58,13 +60,13 @@ export class ShowSummaryComponent implements OnInit {
     this.usertoPay = this.users.find(x => x.id == this.currentOrder.executedBy);
   }
 
-  //getUserData() {
-  //  this.data.getLoggedUserData().subscribe(success => {
-  //    if (success) {
-  //      this.currentUser = this.data.userData;
-  //    }
-  //  });
-  //}
+  getPaiments() {
+    this.data.getPaimentsRequests().subscribe(success => {
+      if (success) {
+        this.paiments = this.data.paimentsRequests;
+      }
+    });
+  }
 
   loadUsers() {
     this.data.loadUsers().subscribe(success => {
@@ -85,6 +87,39 @@ export class ShowSummaryComponent implements OnInit {
       }
     });
   }
+
+  confirmPaiment(orderItem: OrderItem) {
+
+    var paimentRequest = {
+      orderitemid: orderItem.id,
+      userid: this.currentUser.id
+    };
+
+    this.data.confirmPaimentRequest(paimentRequest)
+      .subscribe(success => {
+        if (success) {
+          this.getPaiments();
+          this.currentOrder.items.find(x => x.id === paimentRequest.orderitemid).isPaid = true;
+        }
+      });
+  }
+
+  checkIsPaid(orderItem: any) {
+    return this.paiments.find(x => x.orderItemId === orderItem.id) != null;
+  }
+
+  paimentReceived(orderItem: any) {
+    return !orderItem.isPaid && this.currentUser.id === this.currentOrder.madeBy && this.checkIsPaid(orderItem);
+  }
+
+  paimentDone(orderItem: any) {
+    return orderItem.isPaid && this.currentUser.id === this.currentOrder.madeBy;
+  }
+
+  paimentNotReceived(orderItem: any) {
+    return !orderItem.isPaid && this.currentUser.id === this.currentOrder.madeBy;
+  }
+
 
   onGetYerba(id: number) {
     return this.yerbas.find(x => x.id === id);

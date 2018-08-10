@@ -519,7 +519,7 @@ namespace App.Data
             return user;
         }
 
-        public void UpdateOrderItems(OrderItem[] orderItem)
+        public void UpdateOrderItems(IEnumerable<OrderItem> orderItem)
         {
             using (var connection = new SQLiteConnection(_connectionString))
             {
@@ -628,7 +628,7 @@ namespace App.Data
 
 
                 var executeResult = connection.Execute(
-                    "DELETE PaimentRequests WHERE UserId = @UserId AND OrderItemId = @OrderItemId)", confirmParamteres);
+                    "DELETE FROM PaimentRequests WHERE UserId = @UserId AND OrderItemId = @OrderItemId", confirmParamteres);
 
                 if(executeResult > 0)
                 {

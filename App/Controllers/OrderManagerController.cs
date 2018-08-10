@@ -595,7 +595,7 @@ namespace App.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _databaseRepository.UpdateOrderItems(_mapper.Map<OrderItemViewModel[], OrderItem[]>(model));
+                    _databaseRepository.UpdateOrderItems(_mapper.Map<IEnumerable<OrderItemViewModel>, IEnumerable<OrderItem>>(model.ToArray()));
 
                     return Ok();
                 }

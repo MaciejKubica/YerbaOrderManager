@@ -56,7 +56,7 @@ namespace App.Data
 
         bool SetNextOrderLockerForUser(string email);
 
-        void UpdateOrderItems(OrderItem[] orderItem);
+        void UpdateOrderItems(IEnumerable<OrderItem> orderItem);
         
         // PaimentREquests
 

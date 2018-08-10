@@ -48,7 +48,8 @@ export class AddYerbaToOrderComponent implements OnInit {
 
     let findOrderItem = this.orderItems.find(x => x.userId == message.userId && x.yerbaId == message.yerbaId);
     if (findOrderItem) {
-      findOrderItem.quantity = findOrderItem.quantity + message.quantity;      
+      findOrderItem.quantity = findOrderItem.quantity + message.quantity;
+      findOrderItem.orderId = this.currentOrder.id;
     } else {
       message.userDetails = new CompactUser();
       var userFound = this.users.find(x => x.id == message.userId);
@@ -57,8 +58,12 @@ export class AddYerbaToOrderComponent implements OnInit {
       message.userDetails.id = userFound.id;
       message.userDetails.name = userFound.name;
 
+      message.orderId = this.currentOrder.id;
+
       this.orderItems.push(message);
     }
+
+    this.onSubmitChanges();
   }
 
   getOrderData(id: any) {

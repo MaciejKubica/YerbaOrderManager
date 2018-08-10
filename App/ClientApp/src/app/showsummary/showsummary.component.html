@@ -34,8 +34,7 @@
         <tr>
           <th>User</th>
           <th>Yerba</th>
-          <th>Quantity</th>
-          <th>Paid</th>
+          <th>Quantity</th>          
           <th>Cost</th>
           <th>Total</th>
         </tr>
@@ -44,10 +43,14 @@
         <tr *ngFor="let orderItem of currentOrder.items">
           <td>{{ orderItem.userDetails.name }}</td>
           <td><a [href]="onGetYerba(orderItem.yerbaId).url" data-toggle="tooltip" [title]="onGetYerba(orderItem.yerbaId).description" target="blank">{{onGetYerba(orderItem.yerbaId).name}}</a></td>
-          <td>{{ orderItem.quantity }}</td>
-          <td>{{ orderItem.isPaid }}</td>
+          <td>{{ orderItem.quantity }}</td>          
           <td>{{ orderItem.cost  | currency:'PLN':true:'2.2-4' }}</td>
           <td>{{ orderItem.cost * orderItem.quantity  | currency:'PLN':true:'2.2-4' }}</td>
+          <td>
+            <button class="btn btn-success btn-sm" *ngIf="paimentReceived(orderItem)" (click)="confirmPaiment(orderItem)">Confirm payment</button>
+            <button class="btn btn-warning btn-sm" *ngIf="paimentDone(orderItem)" disabled>Payment received</button>
+            <button class="btn btn-danger btn-sm" *ngIf="paimentNotReceived(orderItem)" disabled>Payment not received</button>
+          </td>
         </tr>
       </tbody>
     </table>
