@@ -39,7 +39,7 @@
             <td>{{ orderItem.userId }}</td>
             <td><a [href]="onGetYerba(orderItem.yerbaId).url" data-toggle="tooltip" [title]="onGetYerba(orderItem.yerbaId).description" target="blank">{{onGetYerba(orderItem.yerbaId).name}}</a></td>
             <td>{{ orderItem.quantity }}</td>
-            <td>{{ orderItem.isPaid }}</td>
+            <td>{{ orderItem.paid }}</td>
             <td>{{ orderItem.cost  | currency:'PLN':true:'2.2-4' }}</td>
             <td>{{ orderItem.cost * orderItem.quantity  | currency:'PLN':true:'2.2-4' }}</td>
             <td>             

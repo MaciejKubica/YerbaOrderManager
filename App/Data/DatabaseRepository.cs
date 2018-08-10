@@ -367,7 +367,7 @@ namespace App.Data
                     orderItemParams.Add("@YerbaId", orderItem.YerbaId, DbType.Int32);
                     orderItemParams.Add("@Quantity", orderItem.Quantity, DbType.Int32);
                     orderItemParams.Add("@OrderId", addedId, DbType.Int32);
-                    orderItemParams.Add("@Paid", orderItem.IsPaid, DbType.Boolean);
+                    orderItemParams.Add("@Paid", orderItem.Paid, DbType.Boolean);
                     orderItemParams.Add("@Cost", orderItem.Cost, DbType.Decimal);
                     orderItemParams.Add("@UserId", orderItem.UserId, DbType.Int32);
 
@@ -531,7 +531,7 @@ namespace App.Data
                     DynamicParameters orderItemParams = new DynamicParameters();
                     orderItemParams.Add("@YerbaId", item.YerbaId, DbType.Int32);
                     orderItemParams.Add("@Quantity", item.Quantity, DbType.Int32);                    
-                    orderItemParams.Add("@Paid", item.IsPaid, DbType.Boolean);
+                    orderItemParams.Add("@Paid", item.Paid, DbType.Boolean);
                     orderItemParams.Add("@Cost", item.Cost, DbType.Decimal);
                     orderItemParams.Add("@UserId", item.UserId, DbType.Int32);
                     orderItemParams.Add("@Id", item.Id, DbType.Int32);
@@ -548,7 +548,7 @@ namespace App.Data
                     DynamicParameters orderItemParams = new DynamicParameters();
                     orderItemParams.Add("@YerbaId", item.YerbaId, DbType.Int32);
                     orderItemParams.Add("@Quantity", item.Quantity, DbType.Int32);
-                    orderItemParams.Add("@Paid", item.IsPaid, DbType.Boolean);
+                    orderItemParams.Add("@Paid", item.Paid, DbType.Boolean);
                     orderItemParams.Add("@Cost", item.Cost, DbType.Decimal);
                     orderItemParams.Add("@UserId", item.UserId, DbType.Int32);
                     orderItemParams.Add("@OrderId", item.OrderId, DbType.Int32);

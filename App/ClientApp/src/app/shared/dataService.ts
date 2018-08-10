@@ -6,6 +6,7 @@ import { Yerba } from './yerba';
 import { Order, OrderItem } from './order';
 import { ChangePassword} from './changepassword';
 import { Observable } from 'rxjs/Observable';
+import { PaimentRequest } from './paimentrequest';
 
 
 @Injectable()
@@ -167,7 +168,7 @@ export class DataService {
       .set("Authorization", "Bearer " + this.token)
       .set("id", id.toString());    
       
-    return this.http.get("/api/ordermanager/getorderbyid", { headers }).map((data: any[]) => {
+    return this.http.get("/api/ordermanager/getorderbyid", { headers }).map((data: Order) => {
       this.orderData = data;
       return true;
     }, error => console.error(error));
@@ -322,7 +323,7 @@ export class DataService {
     return this.token.length == 0 || this.tokenExpiration > new Date();
   }
 
-  orderData: any;
+  orderData: Order;
 
   rolesInSystem: any[];
 
@@ -340,7 +341,7 @@ export class DataService {
 
   //Paiments
 
-  paimentsRequests: any[];
+  paimentsRequests: PaimentRequest[];
 
   public getPaimentsRequests() {
 
@@ -361,7 +362,7 @@ export class DataService {
 
     var jsonString = JSON.stringify(paimentRequest);
     console.log(jsonString);
-    return this.http.post("/api/ordermanager/confirmpaimentrequest", jsonString, { headers });     
+    return this.http.post("/api/ordermanager/confirmpaimentrequest", jsonString, { headers }).map((response: any) => { return true; });     
   }
 
   public createPaimentRequest(paimentRequest: any): Observable<boolean> {

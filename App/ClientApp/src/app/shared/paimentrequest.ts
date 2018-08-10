@@ -1,10 +1,4 @@
-import { OrderItem, CompactUser } from "./order";
-
-export class PaimentRequests {
-  id: number;
-  orderItem: number;
+export class PaimentRequest {
+  orderItemId: number;
   userId: number;
-
-  userDetails: CompactUser;
-  orderItemDetails: OrderItem;
 }

@@ -17,7 +17,7 @@ namespace App.Data.Entities
 
         public int OrderId { get; set; }
 
-        public bool IsPaid { get; set; }
+        public bool Paid { get; set; }
 
         public decimal Cost { get; set; }
 

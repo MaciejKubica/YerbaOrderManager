@@ -52,7 +52,7 @@ export class ShowSummaryComponent implements OnInit {
   }
 
   calculateBillForPayUser() {
-    let itemsToPay = this.currentOrder.items.filter(x => x.userId == this.currentUser.id && x.isPaid === false);   
+    let itemsToPay = this.currentOrder.items.filter(x => x.userId == this.currentUser.id && x.paid === false);   
     this.calculatedBill =  _.sum(_.map(itemsToPay, i => i.quantity * i.cost));    
   }
 
@@ -97,9 +97,9 @@ export class ShowSummaryComponent implements OnInit {
 
     this.data.confirmPaimentRequest(paimentRequest)
       .subscribe(success => {
-        if (success) {
+        if (success) {          
+          this.currentOrder.items.find(x => x.id === paimentRequest.orderitemid).paid = true;
           this.getPaiments();
-          this.currentOrder.items.find(x => x.id === paimentRequest.orderitemid).isPaid = true;
         }
       });
   }
@@ -109,17 +109,17 @@ export class ShowSummaryComponent implements OnInit {
   }
 
   paimentReceived(orderItem: any) {
-    return !orderItem.isPaid && this.currentUser.id === this.currentOrder.madeBy && this.checkIsPaid(orderItem);
+    return !orderItem.paid && this.currentUser.id === this.currentOrder.madeBy && this.checkIsPaid(orderItem);
   }
 
   paimentDone(orderItem: any) {
-    return orderItem.isPaid && this.currentUser.id === this.currentOrder.madeBy;
+    return orderItem.paid && this.currentUser.id === this.currentOrder.madeBy;
   }
 
   paimentNotReceived(orderItem: any) {
-    return !orderItem.isPaid && this.currentUser.id === this.currentOrder.madeBy;
+    return !orderItem.paid && this.currentUser.id === this.currentOrder.madeBy;
   }
-
+  
 
   onGetYerba(id: number) {
     return this.yerbas.find(x => x.id === id);

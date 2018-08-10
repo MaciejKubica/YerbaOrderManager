@@ -4,7 +4,7 @@ import { Router } from "@angular/router"
 import { Order } from '../shared/order';
 import { User } from '../shared/user';
 
-import { PaimentRequests } from '../shared/paimentrequest';
+import { PaimentRequest } from '../shared/paimentrequest';
 
 @Component({
   selector: "app-paiments",
@@ -30,7 +30,7 @@ export class PaimentsComponent implements OnInit {
     this.data.getPaimentsRequests().subscribe(success => {
       if (success) {
         
-        this.paiments = this.data.paimentsRequests.filter(x => x.userid === this.user.id);
+        this.paiments = this.data.paimentsRequests.filter(x => x.userId === this.user.id);
       }
     });
   }

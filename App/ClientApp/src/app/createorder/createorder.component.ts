@@ -80,7 +80,7 @@ export class CreateOrderComponent implements OnInit {
     this.order.totalCost = this.totalcost;
     this.order.totalQuantity = this.totalQuantity;
 
-    if (this.orderItems.find(x => x.isPaid == false)) {
+    if (this.orderItems.find(x => x.paid === false)) {
       this.order.isPaid = false;
     } else {
       this.order.isPaid = true;

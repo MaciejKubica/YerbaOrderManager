@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { PasswordStrengthBar } from '../passwordStrengthBar';
 import { User } from '../shared/user';
 import { Order, OrderItem } from '../shared/order'
+
+import { PaimentRequest } from '../shared/paimentrequest'
 import * as _ from "lodash";
 import { NG_VALIDATORS, AbstractControl } from "@angular/forms";
 import { ChangePassword } from '../shared/changepassword';
@@ -46,7 +48,7 @@ export class UserPanelComponent implements OnInit {
   public yerbas = [];
   public orders = [];
   public userOrders = [];
-  public paiments = [];
+  public paiments: PaimentRequest[];
 
    public paimentRequest = {
       orderitemid: 0,
@@ -69,7 +71,7 @@ export class UserPanelComponent implements OnInit {
   getOrderItems() {
     this.data.getLoggedUserOrderItems().subscribe(success => {
       if (success) {
-        this.userOrderItems = this.data.ordersItems.filter(oi => oi.isPaid === false);
+        this.userOrderItems = this.data.ordersItems.filter(oi => oi.paid === false);
       }
     });
   }
@@ -78,6 +80,7 @@ export class UserPanelComponent implements OnInit {
     this.data.getPaimentsRequests().subscribe(success => {
       if (success) {
         this.paiments = this.data.paimentsRequests.filter(oi => oi.userId === this.user.id);
+        this.getOrderItems();
       }
     });
   }
@@ -108,7 +111,7 @@ export class UserPanelComponent implements OnInit {
 
   onCheckPassword() {
 
-    var checkPassword = new CheckPassword(this.user.id, this.retypeOldPassword)
+    var checkPassword = new CheckPassword(this.user.id, this.retypeOldPassword);
 
     this.data.checkPassword(checkPassword).subscribe(() => {
       this.oldPasswordNotMatched = false;
@@ -166,8 +169,8 @@ export class UserPanelComponent implements OnInit {
     this.router.navigate(["/createorder"]);
   }
 
-  checkIsPaid(orderItem: any) {  
-    return this.paiments.find(x => x.orderItemId == orderItem.id) != null;
+  checkIsPaid(orderItem: OrderItem) {  
+    return orderItem.paid === false && this.paiments.find(x => x.orderItemId === orderItem.id);
   }
 
   sendPaimentRequest(orderItem: any) {    
@@ -184,9 +187,8 @@ export class UserPanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("LoggedUser"));
-    this.loadYerbas();
     this.getPaiments();
-    this.loadAllOrders();
-    this.getOrderItems();
+    this.loadYerbas();    
+    this.loadAllOrders();    
   }
 }

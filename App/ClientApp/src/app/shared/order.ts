@@ -18,7 +18,7 @@ export class OrderItem {
   yerbaId: number;
   quantity: number;
   orderId: number;
-  isPaid: boolean;
+  paid: boolean;
   cost: number;
   userId: number;
   userDetails: CompactUser;

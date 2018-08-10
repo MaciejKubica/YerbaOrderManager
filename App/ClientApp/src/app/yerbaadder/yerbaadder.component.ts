@@ -65,7 +65,7 @@ export class YerbaAdderComponent implements OnInit {
     orderItem.yerbaId = this.selectedYerba;
     orderItem.cost = this.yerbas.find(y => y.id == this.selectedYerba).cost;
     orderItem.quantity = this.quantity;
-    orderItem.isPaid = this.isPaid;
+    orderItem.paid = this.isPaid;
     
     orderItem.orderId = 0;    
 
