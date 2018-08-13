@@ -276,6 +276,11 @@ namespace AspNetCore.Identity.SQLite.Dapper
 
         public Task<DateTimeOffset?> GetLockoutEndDateAsync(TUser user, CancellationToken cancellationToken)
         {
+            if (user.LockoutEnabled && user.LockoutEndDateUtc == null)
+            {
+                return Task.FromResult(new DateTimeOffset?(DateTime.MaxValue));
+            }
+
             return Task.FromResult(user.LockoutEndDateUtc);
         }
 

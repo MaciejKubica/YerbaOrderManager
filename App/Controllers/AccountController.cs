@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using App.Data.Entities;
 using App.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -62,7 +63,9 @@ namespace App.Controllers
             {
                 var user = await _userManager.FindByEmailAsync(model.UserName);
                 var userRoles = await _userManager.GetRolesAsync(user);
-                if (user != null)
+                var isLockedOut = await _userManager.IsLockedOutAsync(user);
+
+                if (user != null && !isLockedOut)
                 {
                     var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
 
@@ -79,7 +82,10 @@ namespace App.Controllers
 
                         return Created("", results);
                     }
-
+                }
+                else
+                {
+                    return Forbid();
                 }
             }
 
@@ -95,7 +101,7 @@ namespace App.Controllers
                 {
                     var storeUser = _mapper.Map<UserViewModel, StoreUserExtended>(userViewModel);
 
-                    var result = await _userManager.CreateAsync(storeUser, userViewModel.Password);
+                    var result = await _userManager.CreateAsync(storeUser, userViewModel.Password);                    
 
                     var addToRoleResult = await _userManager.AddToRoleAsync(storeUser, "StandardUser");
 

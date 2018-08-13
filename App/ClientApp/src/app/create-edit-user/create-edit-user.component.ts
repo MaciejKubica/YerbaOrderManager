@@ -24,6 +24,8 @@ export class CreateEditUserComponent implements OnInit {
   public roles: any[];
   public currentUser: User;
 
+  public patternDef = "^[a-z\d-_\s]+$";
+
   public roleSelections: RoleSelection[];
 
   ngOnInit(): void {
