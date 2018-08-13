@@ -105,7 +105,7 @@ namespace AspNetCore.Identity.SQLite.Dapper
         {
             using (var connection = new SQLiteConnection(_config.ConnectionString))
             {
-                string commandText = string.Format($"SELECT Count(*) FROM {this.userRolesTableName} ur JOIN {_config.RoleTableName} r ON ur.RoleId == r.Id WHERE ur.UserId = @UserId AND r.Name = @RoleName");
+                string commandText = string.Format($"SELECT Count(*) FROM {this.userRolesTableName} ur JOIN {_config.RoleTableName} r ON ur.RoleId == r.Id WHERE ur.UserId = @UserId AND r.Name LIKE @RoleName");
 
                 connection.Open();
                 DynamicParameters parameters = new DynamicParameters();

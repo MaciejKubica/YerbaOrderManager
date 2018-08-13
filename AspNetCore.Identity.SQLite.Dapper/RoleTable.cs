@@ -79,7 +79,7 @@ namespace AspNetCore.Identity.SQLite.Dapper
         {
             using (var connection = new SQLiteConnection(_config.ConnectionString))
             {
-                string commandText = string.Format($"SELECT * FROM {this.roleTableName} WHERE Name = @RoleName");
+                string commandText = string.Format($"SELECT * FROM {this.roleTableName} WHERE Name LIKE @RoleName");
 
                 connection.Open();
                 DynamicParameters paramteres = new DynamicParameters();
