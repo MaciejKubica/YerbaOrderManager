@@ -124,8 +124,10 @@ export class UserPanelComponent implements OnInit {
 
   onChangeSettings() {
     this.data.editUserData(this.user).subscribe(success => {
-      if (success) {
-        this.user = this.data.userData;
+      if (!success) {
+        this.user = JSON.parse(localStorage.getItem("LoggedUser"));
+      } else {
+        localStorage.setItem("LoggedUser", JSON.stringify(this.user));
       }
     });
   }

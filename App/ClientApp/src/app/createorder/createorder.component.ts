@@ -2,10 +2,12 @@ import { Component, OnInit } from "@angular/core"
 import { DataService } from "../shared/dataService"
 import { Router, ActivatedRoute } from "@angular/router"
 import { YerbaAdderComponent } from "../yerbaadder/yerbaadder.component"
-import { User } from '../shared/user';
-import { Order, OrderItem } from '../shared/order';
-import { Yerba } from '../shared/yerba';
+import { User } from "../shared/user";
+import { Order, OrderItem } from "../shared/order";
+import { Yerba } from "../shared/yerba";
 import * as _ from "lodash";
+import * as moment from 'moment';
+import "eonasdan-bootstrap-datetimepicker";
 
 @Component({
   selector: "app-createorder",
@@ -22,7 +24,8 @@ export class CreateOrderComponent implements OnInit {
     this.order.created = new Date();
     this.order.isPaid = false;
     this.order.orderDate = new Date();
-    this.order.id = 0;    
+    this.order.id = 0;
+    this.date = moment();
   }
 
   public order: Order;
@@ -38,6 +41,8 @@ export class CreateOrderComponent implements OnInit {
   public isPaid: boolean = false;
 
   public orderItems = [];
+
+  public date: moment.Moment;
 
   get totalcost(): number {
     return _.sum(_.map(this.orderItems, i => i.cost * i.quantity));
@@ -75,7 +80,19 @@ export class CreateOrderComponent implements OnInit {
     });
   }
 
+  dateChange(event: any) {
+    this.date = event;
+    this.order.orderDate = new Date(this.date.toString());
+  }
+
+  dateClick() {
+    this.order.orderDate = new Date(this.date.toString());
+  }
+
   onCreate() {
+
+    this.order.orderDate = new Date(this.date.toString());
+
     this.order.madeBy = this.data.userData.id; 
     this.order.totalCost = this.totalcost;
     this.order.totalQuantity = this.totalQuantity;
@@ -126,7 +143,7 @@ export class CreateOrderComponent implements OnInit {
 
   }
 
-  options = {
+  a2eOptions = {
     format: "DD-MM-YYYY"
   };
 

@@ -260,7 +260,10 @@ export class DataService {
 
     var jsonString = JSON.stringify(user);
     console.log(jsonString);
-    return this.http.post("/api/ordermanager/changeuserdata", jsonString, { headers });
+    return this.http.post("/api/ordermanager/changeuserdata", jsonString, { headers })
+      .map((data: any) => {
+        return true;
+        });
   }
 
   public registerUser(user: User): Observable<boolean> {

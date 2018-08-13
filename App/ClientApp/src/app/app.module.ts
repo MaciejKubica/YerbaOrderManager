@@ -4,8 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { A2Edatetimepicker } from 'ng2-eonasdan-datetimepicker';
-import { DateTimePickerDirective } from 'ng2-eonasdan-datetimepicker/src/datetimepicker.directive';
+import { DateTimePickerDirective } from 'ng2-eonasdan-datetimepicker/dist/datetimepicker.directive'
 import { AuthService } from "./shared/authService";
+
 
 
 import { AppComponent } from './app.component';

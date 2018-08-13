@@ -124,8 +124,8 @@ namespace App.Data
                 foreach (var role in userToEdit.UserRoles)
                 {
                     DynamicParameters roleParameter = new DynamicParameters();
-                    parameter.Add("@UserId", userToEdit.Id, DbType.Int32);
-                    parameter.Add("@RoleId", role.Id, DbType.Int32);
+                    roleParameter.Add("@UserId", userToEdit.Id, DbType.Int32);
+                    roleParameter.Add("@RoleId", role.Id, DbType.Int32);
 
                     connection.Execute($"INSERT INTO UserRoles (UserId, RoleId) " +
                                        $"VALUES (@UserId, @RoleId)", roleParameter);
