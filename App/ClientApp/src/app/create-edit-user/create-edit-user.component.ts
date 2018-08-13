@@ -17,10 +17,12 @@ export class CreateEditUserComponent implements OnInit {
 
     this.usertoadd = new User();
     this.barLabel = "Password strength:";
+    this.currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
   }
 
   public barLabel: string;
   public roles: any[];
+  public currentUser: User;
 
   public roleSelections: RoleSelection[];
 

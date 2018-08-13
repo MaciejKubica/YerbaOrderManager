@@ -26,6 +26,7 @@ export class CreateOrderComponent implements OnInit {
     this.order.orderDate = new Date();
     this.order.id = 0;
     this.date = moment();
+    this.currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
   }
 
   public order: Order;
@@ -37,6 +38,8 @@ export class CreateOrderComponent implements OnInit {
 
   public yerbas = [];
   public users = [];
+
+  public currentUser: User;
  
   public isPaid: boolean = false;
 
@@ -57,7 +60,7 @@ export class CreateOrderComponent implements OnInit {
     this.loadYerbas();
     this.selectedUserMadeBy = this.users[0];
     this.selectedUserExecutedBy = this.users[0];
-    this.selectedYerba = this.yerbas[0];
+    this.selectedYerba = this.yerbas[0];    
   }
 
   loadYerbas() {
@@ -81,19 +84,22 @@ export class CreateOrderComponent implements OnInit {
   }
 
   dateChange(event: any) {
-    this.date = event;
-    this.order.orderDate = new Date(this.date.toString());
+    var item = event;
+
+    this.date = moment(event, "DD/MM/YYYY");
   }
 
-  dateClick() {
-    this.order.orderDate = new Date(this.date.toString());
+  dateClick(event: any) {
+    var item = event;
+
+    this.date = moment(event, "DD/MM/YYYY");
   }
 
   onCreate() {
 
-    this.order.orderDate = new Date(this.date.toString());
+    this.order.orderDate = this.date.toDate();
 
-    this.order.madeBy = this.data.userData.id; 
+    this.order.madeBy = this.currentUser.id; 
     this.order.totalCost = this.totalcost;
     this.order.totalQuantity = this.totalQuantity;
 
@@ -144,7 +150,7 @@ export class CreateOrderComponent implements OnInit {
   }
 
   a2eOptions = {
-    format: "DD-MM-YYYY"
+    format: "DD/MM/YYYY"
   };
 
 }
