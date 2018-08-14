@@ -5,7 +5,7 @@ namespace App.Data.Entities
 {
     public class StoreUserExtended : IdentityUserCore<int>
     {        
-        public bool OrderToken { get; set; }
+        public bool OrderTokenLocker { get; set; }
 
         public string BankAccount { get; set; }
     }

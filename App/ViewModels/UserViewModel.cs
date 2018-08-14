@@ -21,7 +21,7 @@ namespace App.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }        
 
-        public bool OrderToken { get; set; }
+        public bool OrderTokenLocker { get; set; }
         
         public string BankAccount { get; set; }
 

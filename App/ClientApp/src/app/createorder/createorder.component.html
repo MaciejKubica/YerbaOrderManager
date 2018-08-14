@@ -12,8 +12,8 @@
       </div>
       <div class="form-group">
         <label for="selectedUser">Order executed by:</label>
-        <select class="form-control" [(ngModel)]="selectedUserExecutedBy" id="selectedUser" (change)="onChangeExecutedBy($event.target.value)">
-          <option *ngFor="let user of users" [value]="user.id">{{user.email}}</option>
+        <select [compareWith]="compareFn" type="number" class="form-control" [(ngModel)]="selectedUserExecutedBy" id="selectedUser" (change)="onChangeExecutedBy($event.target.value)">
+          <option *ngFor="let user of users" [disabled]="!isInRole" [value]="user.id" [selected]="selectedUserExecutedBy">{{user.email}}</option>
         </select>
       </div>
 

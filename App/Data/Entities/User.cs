@@ -13,7 +13,7 @@ namespace App.Data.Entities
 
         public string Password { get; set; }        
 
-        public bool OrderToken { get; set; }
+        public bool OrderTokenLocker { get; set; }
         
         public string BankAccount { get; set; }
         

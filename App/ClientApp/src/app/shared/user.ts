@@ -5,7 +5,7 @@ export class User {
   email: string;
   name: string;
   password: string;  
-  orderToken: boolean;
+  orderTokenLocker: boolean;
   bankAccount: string;
   lockoutEndDateUtc: Date;
   lockoutEnabled: boolean;

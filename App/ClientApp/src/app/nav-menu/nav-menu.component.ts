@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from "../shared/dataService"
+import { Role } from "../shared/role";
 
 @Component({
   selector: 'app-nav-menu',
@@ -16,7 +17,11 @@ export class NavMenuComponent {
   }
 
   get isInRole(): boolean {
-    return this.data.loggedUserRoles != null && this.data.loggedUserRoles.length > 0 && this.data.loggedUserRoles.indexOf("Administrator") >= 0;
+    return this.data.loggedUserRoles != null && this.data.loggedUserRoles.length > 0 && this.data.loggedUserRoles.some(this.isAdmin);
+  }
+
+  isAdmin(element, index, array) {
+    return element === 'Administrator';
   }
 
   logoff() {

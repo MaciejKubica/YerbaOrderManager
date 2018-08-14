@@ -120,7 +120,7 @@ namespace App.Controllers
                     {
                         var foundUser = await _userManager.FindByEmailAsync(userViewModel.Email);
                         _databaseRepository.FillExtendedIdentityData(userViewModel.BankAccount,
-                            userViewModel.LockoutEnabled, userViewModel.OrderToken, foundUser.Id, _mapper.Map<IEnumerable<RolesViewModel>, IEnumerable<Role>>(userViewModel.Roles));
+                            userViewModel.LockoutEnabled, userViewModel.OrderTokenLocker, foundUser.Id, _mapper.Map<IEnumerable<RolesViewModel>, IEnumerable<Role>>(userViewModel.Roles));
                         return Created("", userViewModel);
                     }
                     else
@@ -216,7 +216,7 @@ namespace App.Controllers
                 {
                     var result = await _userManager.UpdateAsync(_mapper.Map<UserViewModel, StoreUserExtended>(userToEdit));
                     _databaseRepository.FillExtendedIdentityData(userToEdit.BankAccount,
-                        userToEdit.LockoutEnabled, userToEdit.OrderToken, userToEdit.Id, _mapper.Map<IEnumerable<RolesViewModel>, IEnumerable<Role>>(userToEdit.Roles));
+                        userToEdit.LockoutEnabled, userToEdit.OrderTokenLocker, userToEdit.Id, _mapper.Map<IEnumerable<RolesViewModel>, IEnumerable<Role>>(userToEdit.Roles));
                     return Ok(userToEdit);
                 }
                 else

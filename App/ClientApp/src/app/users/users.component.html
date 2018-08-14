@@ -17,7 +17,7 @@
     <tr *ngFor="let user of users">
       <td>{{ user.email }}</td>
       <td>{{ user.name }}</td>
-      <td>{{ user.orderToken }}</td>
+      <td>{{ user.orderTokenLocker }}</td>
       <td>{{ user.bankAccount }}</td>
       <td>
         <button class="btn btn-warning btn-sm" (click)="editUser(user)">Edit</button>

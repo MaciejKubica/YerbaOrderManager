@@ -1,7 +1,9 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core"
 import { DataService} from "../shared/dataService"
-import { Router } from "@angular/router"
+import { Router } from "@angular/router";
 import { Yerba } from '../shared/yerba';
+import { Role } from '../shared/role';
+import * as _ from 'lodash';
 
 
 @Component({
@@ -30,8 +32,13 @@ export class YerbasComponent implements OnInit, AfterViewInit {
   }
 
   get isInAdministratorRole(): boolean {
-    return this.data.loggedUserRoles != null && this.data.loggedUserRoles.find( x => x === "Administrator") != null;
+    return this.data.loggedUserRoles != null && this.data.loggedUserRoles.some(this.isAdmin);
   }
+
+  isAdmin(element, index, array) {
+    return element === 'Administrator';
+  } 
+
 
   loadYerbas() {
     this.data.loadYerbas().subscribe(success => {

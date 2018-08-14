@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core"
 import { DataService } from "../shared/dataService"
 import { Router } from "@angular/router"
 import { Order } from '../shared/order';
+import { Role } from '../shared/role';
 
 @Component({
   selector: "app-orders",
@@ -27,8 +28,12 @@ export class OrdersComponent implements OnInit {
   }
 
   get isInAdministratorRole(): boolean {
-    return this.data.loggedUserRoles != null && this.data.loggedUserRoles.find(x => x === "Administrator") != null;
+    return this.data.loggedUserRoles != null && this.data.loggedUserRoles.some(this.isAdmin);
   }
+
+  isAdmin(element, index, array) {
+    return element === 'Administrator';
+  } 
 
   loadAllOrders() {
     this.data.loadAllOrders().subscribe(success => {

@@ -10,5 +10,5 @@ export class UserRole {
   roleId: number;
 
   roleDetails: Role;
-  userDetails: CompactUser
+  userDetails: CompactUser;
 }

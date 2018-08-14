@@ -78,7 +78,7 @@ namespace App.Data
                 parameter.Add("@Name", userToCreate.Name, DbType.AnsiString);
                 parameter.Add("@Password", userToCreate.Password, DbType.AnsiString);
                 parameter.Add("@BankAccount", userToCreate.BankAccount, DbType.AnsiString);
-                parameter.Add("@OrderToken", userToCreate.OrderToken, DbType.Boolean);
+                parameter.Add("@OrderToken", userToCreate.OrderTokenLocker, DbType.Boolean);
 
                 userToCreate.Id = connection.QueryFirst<int>(
                     $"INSERT INTO Users (Email, Name, Password, OrderTokenLocker, BankAccount) " +
@@ -110,7 +110,7 @@ namespace App.Data
                 parameter.Add("@Name", userToEdit.Name, DbType.AnsiString);
                 parameter.Add("@Password", userToEdit.Password, DbType.AnsiString);
                 parameter.Add("@BankAccount", userToEdit.BankAccount, DbType.AnsiString);
-                parameter.Add("@OrderToken", userToEdit.OrderToken, DbType.Boolean);
+                parameter.Add("@OrderToken", userToEdit.OrderTokenLocker, DbType.Boolean);
 
                 connection.Execute(
                            $"UPDATE Users SET Name = @Name, Password = @Password, OrderTokenLocker = @OrderToken, BankAccount = @BankAccount " +

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, Directive, Output, EventEmitter, Input, SimpleChange } from "@angular/core"
 import { DataService } from "../shared/dataService"
 import { Router, ActivatedRoute } from "@angular/router"
 import { YerbaAdderComponent } from "../yerbaadder/yerbaadder.component"
@@ -27,6 +27,8 @@ export class CreateOrderComponent implements OnInit {
     this.order.id = 0;
     this.date = moment();
     this.currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
+
+    this.btnDisabled = this.isInRole;
   }
 
   public order: Order;
@@ -37,7 +39,7 @@ export class CreateOrderComponent implements OnInit {
   public selectedUserExecutedBy: User;
 
   public yerbas = [];
-  public users = [];
+  public users: User[];
 
   public currentUser: User;
  
@@ -46,6 +48,12 @@ export class CreateOrderComponent implements OnInit {
   public orderItems = [];
 
   public date: moment.Moment;
+
+  public btnDisabled: boolean;
+
+  compareFn(c1: User, c2: User): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
 
   get totalcost(): number {
     return _.sum(_.map(this.orderItems, i => i.cost * i.quantity));
@@ -57,16 +65,14 @@ export class CreateOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
-    this.loadYerbas();
-    this.selectedUserMadeBy = this.users[0];
-    this.selectedUserExecutedBy = this.users[0];
-    this.selectedYerba = this.yerbas[0];    
+    this.loadYerbas();   
   }
 
   loadYerbas() {
     this.data.loadYerbas().subscribe(success => {
       if (success) {
         this.yerbas = this.data.yerbas;
+        this.selectedYerba = this.yerbas[0];   
       } else {
         console.log("Not loaded");
       }
@@ -77,6 +83,9 @@ export class CreateOrderComponent implements OnInit {
     this.data.loadUsers().subscribe(success => {
       if (success) {
         this.users = this.data.users.filter(x => x.isDeleted == false);
+        this.selectedUserMadeBy = this.users[0];
+        this.selectedUserExecutedBy = this.users.find(x => x.orderTokenLocker);
+         
       } else {
         console.log("Not loaded");
       }
@@ -95,7 +104,20 @@ export class CreateOrderComponent implements OnInit {
     this.date = moment(event, "DD/MM/YYYY");
   }
 
+
+  get isInRole(): boolean {
+    return this.data.loggedUserRoles != null && this.data.loggedUserRoles.length > 0 && this.data.loggedUserRoles.some(this.isAdmin);
+  }
+
+  isAdmin(element, index, array) {
+    return element === 'Administrator';
+  }
+
   onCreate() {
+
+    if (this.order.executedBy == null) {
+      this.order.executedBy = this.selectedUserExecutedBy.id;
+    }
 
     this.order.orderDate = this.date.toDate();
 

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import "rxjs/add/operator/map";
 import { User } from './user';
 import { Yerba } from './yerba';
+import { Role } from './role';
 import { Order, OrderItem } from './order';
 import { ChangePassword} from './changepassword';
 import { Observable } from 'rxjs/Observable';
@@ -15,6 +16,7 @@ export class DataService {
   constructor(private http: HttpClient) {
     this.token = "";
     this.tokenExpiration = new Date();
+    this.loggedUserRoles = new Array<Role>();
   }
 
   public users = [];
@@ -296,7 +298,7 @@ export class DataService {
 
   token: any;
   tokenExpiration: any;
-  loggedUserRoles: any[];
+  loggedUserRoles: Array<Role>;
   loggedUserEmail: string;
 
   login(creds) : Observable<boolean> {
@@ -319,14 +321,18 @@ export class DataService {
   }
 
   isInRole(role: string): boolean {
-    return this.loggedUserRoles != null && this.loggedUserRoles.length > 0 && this.loggedUserRoles.indexOf(x => x === role) > 0;
+    return this.loggedUserRoles != null && this.loggedUserRoles.length > 0 && this.loggedUserRoles.some(this.isAdmin);
   }
+
+  isAdmin(element, index, array) {
+    return element === 'Administrator';
+  } 
 
   get loginRequired(): boolean {
     return this.token.length == 0 || this.tokenExpiration > new Date();
   }
 
-  orderData: Order;
+  orderData: Order; 
 
   rolesInSystem: any[];
 
