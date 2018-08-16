@@ -23,10 +23,11 @@ export class LoginComponent {
       .subscribe(success => {
         if (success) {
 
-          this.data.getLoggedUserData().subscribe(success => {
+          this.data.getLoggedUserData().subscribe(dataSuccess => {
+            if (dataSuccess) {
+              this.router.navigate(["/userpanel"]);
+            }
           });
-
-          this.router.navigate(["/userpanel"]);
         }
         },
       err => this.errorMessage = "Failed to login ");
