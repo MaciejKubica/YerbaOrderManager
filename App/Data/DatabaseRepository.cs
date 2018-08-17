@@ -154,16 +154,19 @@ namespace App.Data
                 DynamicParameters deleteParameter = new DynamicParameters();
                 deleteParameter.Add("@Id", userId, DbType.Int32);
 
-                connection.Execute($"DELETE FROM UserRoles WHERE UserId = @Id", deleteParameter);
-
-                foreach (var role in roles)
+                if (roles.Any())
                 {
-                    DynamicParameters roleParameter = new DynamicParameters();
-                    roleParameter.Add("@UserId", userId, DbType.Int32);
-                    roleParameter.Add("@RoleId", role.Id, DbType.Int32);
+                    connection.Execute($"DELETE FROM UserRoles WHERE UserId = @Id", deleteParameter);
 
-                    connection.Execute($"INSERT INTO UserRoles (UserId, RoleId) " +
-                                       $"VALUES (@UserId, @RoleId)", roleParameter);
+                    foreach (var role in roles)
+                    {
+                        DynamicParameters roleParameter = new DynamicParameters();
+                        roleParameter.Add("@UserId", userId, DbType.Int32);
+                        roleParameter.Add("@RoleId", role.Id, DbType.Int32);
+
+                        connection.Execute($"INSERT INTO UserRoles (UserId, RoleId) " +
+                                           $"VALUES (@UserId, @RoleId)", roleParameter);
+                    }
                 }
 
                 return true;

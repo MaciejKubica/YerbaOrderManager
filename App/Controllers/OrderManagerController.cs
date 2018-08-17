@@ -371,7 +371,7 @@ namespace App.Controllers
                 if (ModelState.IsValid)
                 {
 
-                    var mappedOrder = _mapper.Map<CreateOrderViewModel, Order>(orderToCreate);
+                    var mappedOrder = _mapper.Map<CreateOrderViewModel, Order>(orderToCreate); 
                     if (_databaseRepository.CreateOrder(mappedOrder.Items, mappedOrder.MadeBy, mappedOrder.ExecutedBy,
                         mappedOrder.OrderDate, mappedOrder.IsPaid))
                     {

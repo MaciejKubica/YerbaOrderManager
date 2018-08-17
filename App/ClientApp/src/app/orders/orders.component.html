@@ -21,7 +21,7 @@
   <tbody>
     <tr *ngFor="let order of orders">
       <td>{{ order.id }}</td>
-      <td>{{ order.orderDate | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
+      <td>{{ order.orderDate | date: 'dd-MM-yyyy' }}</td>
       <td>{{ order.created | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
       <td>{{ order.userMadeBy.name }}</td>
       <td>{{ order.userExecutedBy.name }}</td>

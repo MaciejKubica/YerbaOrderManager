@@ -41,6 +41,18 @@ export class UsersComponent implements OnInit {
     this.router.navigate(["/create-edit-user"], { queryParams: { email: user.email } });
   }
 
+  lockUser(user: User) {
+    user.lockoutEnabled = true;
+    user.lockoutEndDateUtc = new Date(2020, 12);
+    this.data.updateUser(user).subscribe(success => {
+      if (!success) {
+        console.log("Not able to edit!");
+      } else {
+        this.loadUsers();
+      }
+    });
+  }
+
   deleteUser(user: User) {
     console.log(user.email + " " + user.name + " " + user.password);
     this.data.deleteUser(user).subscribe(success => {

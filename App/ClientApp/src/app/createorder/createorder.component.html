@@ -1,10 +1,10 @@
 <h1><span class="glyphicon glyphicon-modal-window" ></span> Create new order</h1>
 <div class="container-fluid">
-    <form (submit)="onCreate()">
+    <form (submit)="onCreate()" #f="ngForm" novalidate>
       <div class="form-group">
         <label for="orderDate">OrderDate:</label>        
-        <div class='input-group date' id='datetimepicker1'>
-          <input type='text' class="form-control" a2e-datetimepicker (change)="dateChange($event.target.value)" [options]="a2eOptions" (click)="dateClick($event.target.value)" [(ngModel)]="date" />
+        <div class='input-group date'>
+          <input name="date"  type="text" class="form-control" a2e-datetimepicker (change)="dateChange($event.target.value)" [options]="a2eOptions" (click)="dateClick($event.target.value)" [(ngModel)]="date" date="ngModel" />
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar" (click)="dateClick($event.target.value)" ></span>
           </span>
@@ -12,8 +12,8 @@
       </div>
       <div class="form-group">
         <label for="selectedUser">Order executed by:</label>
-        <select [compareWith]="compareFn" type="number" class="form-control" [(ngModel)]="selectedUserExecutedBy" id="selectedUser" (change)="onChangeExecutedBy($event.target.value)">
-          <option *ngFor="let user of users" [disabled]="!isInRole" [value]="user.id" [selected]="selectedUserExecutedBy">{{user.email}}</option>
+        <select   name="selectedUserExecutedBy" selectedUserExecutedBy="ngModel" class="form-control" [(ngModel)]="selectedUserExecutedBy" (change)="onChangeExecutedBy($event.target.value)">
+          <option *ngFor="let user of users" [disabled]="!isInRole" [value]="user.id" >{{user.name}}  [{{user.email}}]</option>
         </select>
       </div>
 

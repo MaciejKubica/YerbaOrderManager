@@ -38,7 +38,7 @@ export class CreateOrderComponent implements OnInit {
   public selectedUserMadeBy: User;
   public selectedYerba: Yerba;
 
-  public selectedUserExecutedBy: User;
+  public selectedUserExecutedBy: number;
 
   public yerbas = [];
   public users: User[];
@@ -84,10 +84,11 @@ export class CreateOrderComponent implements OnInit {
   loadUsers() {
     this.data.loadUsers().subscribe(success => {
       if (success) {
-        this.users = this.data.users.filter(x => x.isDeleted == false);
-        this.selectedUserMadeBy = this.users[0];
-        this.selectedUserExecutedBy = this.users.find(x => x.orderTokenLocker);
-         
+
+        var list = this.data.users.filter(x => x.isDeleted == false);        
+        this.users = list;
+        this.selectedUserExecutedBy = list.find(x => x.orderTokenLocker).id;
+        this.selectedUserMadeBy = this.users[0];                 
       } else {
         console.log("Not loaded");
       }
@@ -117,7 +118,7 @@ export class CreateOrderComponent implements OnInit {
   onCreate() {
 
     if (this.order.executedBy == null) {
-      this.order.executedBy = this.selectedUserExecutedBy.id;
+      this.order.executedBy = this.selectedUserExecutedBy;
     }
 
     this.order.orderDate = this.date.utc().toDate();

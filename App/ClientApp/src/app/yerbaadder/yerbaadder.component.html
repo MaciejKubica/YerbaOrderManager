@@ -3,7 +3,7 @@
     <label class="col-sm-2 col-form-label" for="selectedUser">Order executed by:</label>
     <div class="col-sm-4">
       <select class="form-control" [(ngModel)]="selectedUser" (change)="onChangeUser($event.target.value)" required>
-        <option *ngFor="let user of users" [value]="user.id">{{user.name}} {{user.email}}</option>
+        <option *ngFor="let user of users" [value]="user.id">{{user.name}} [{{user.email}}]</option>
       </select>
     </div>
   </div>
