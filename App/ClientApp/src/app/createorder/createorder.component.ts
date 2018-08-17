@@ -1,4 +1,5 @@
 import { Component, OnInit, Directive, Output, EventEmitter, Input, SimpleChange } from "@angular/core"
+import { FormControl } from "@angular/forms"
 import { DataService } from "../shared/dataService"
 import { Router, ActivatedRoute } from "@angular/router"
 import { YerbaAdderComponent } from "../yerbaadder/yerbaadder.component"
@@ -25,7 +26,8 @@ export class CreateOrderComponent implements OnInit {
     this.order.isPaid = false;
     this.order.orderDate = new Date();
     this.order.id = 0;
-    this.date = moment();
+    this.date = moment(new Date()).format("DD/MM/YYYY");
+
     this.currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
 
     this.btnDisabled = this.isInRole;
@@ -94,14 +96,13 @@ export class CreateOrderComponent implements OnInit {
 
   dateChange(event: any) {
     var item = event;
-
     this.date = moment(event, "DD/MM/YYYY");
   }
 
   dateClick(event: any) {
     var item = event;
 
-    this.date = moment(event, "DD/MM/YYYY");
+    //this.date = moment(event, "DD/MM/YYYY");
   }
 
 
@@ -119,7 +120,9 @@ export class CreateOrderComponent implements OnInit {
       this.order.executedBy = this.selectedUserExecutedBy.id;
     }
 
-    this.order.orderDate = this.date.toDate();
+    this.order.orderDate = this.date.utc().toDate();
+
+    this.order.orderDate.setHours(2);
 
     this.order.madeBy = this.currentUser.id; 
     this.order.totalCost = this.totalcost;
