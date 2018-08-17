@@ -16,6 +16,7 @@ export class CreateEditYerbaComponent implements OnInit {
   }
 
   public openForEdit: boolean = false;
+  public errorMessage: string;
 
   public yerba: Yerba;
 
@@ -27,7 +28,7 @@ export class CreateEditYerbaComponent implements OnInit {
           this.openForEdit = true;
         }       
 
-      }, error => console.log(error));
+      }, error => this.errorMessage = error);
     }
   }
 
@@ -36,7 +37,7 @@ export class CreateEditYerbaComponent implements OnInit {
       if (success) {
         this.yerba = this.data.yerbaData;
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   onCreate() {
@@ -47,7 +48,7 @@ export class CreateEditYerbaComponent implements OnInit {
         } else {
           this.router.navigate(["/yerbas"]);
         }
-      });
+      }, error => this.errorMessage = error);
     } else {
       this.data.createYerba(this.yerba).subscribe(success => {
         if (!success) {
@@ -55,7 +56,7 @@ export class CreateEditYerbaComponent implements OnInit {
         } else {
           this.router.navigate(["/yerbas"]);
         }
-      });
+      }, error => this.errorMessage = error);
     }    
   }
 

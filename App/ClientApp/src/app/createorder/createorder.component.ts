@@ -34,6 +34,7 @@ export class CreateOrderComponent implements OnInit {
   }
 
   public order: Order;
+  public errorMessage: string;
 
   public selectedUserMadeBy: User;
   public selectedYerba: Yerba;
@@ -143,7 +144,7 @@ export class CreateOrderComponent implements OnInit {
       } else {
         this.router.navigate(["/orders"]);
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   onChangeExecutedBy(value: any) {

@@ -17,6 +17,8 @@ export class UsersComponent implements OnInit {
 
   public users = [];
 
+  public errorMessage: string;
+
   ngOnInit(): void {
     this.loadUsers();
   }
@@ -28,7 +30,7 @@ export class UsersComponent implements OnInit {
       } else {
         console.log("Not loaded");
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   createUser() {
@@ -50,7 +52,7 @@ export class UsersComponent implements OnInit {
       } else {
         this.loadUsers();
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   deleteUser(user: User) {
@@ -61,7 +63,7 @@ export class UsersComponent implements OnInit {
       } else {
         this.loadUsers();
       }
-    });
+    }, error => this.errorMessage = error);
   }  
 }
 

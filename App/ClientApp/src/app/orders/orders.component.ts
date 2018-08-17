@@ -18,6 +18,7 @@ export class OrdersComponent implements OnInit {
   }
 
   public orders = [];
+  public errorMessage: string;
 
   ngOnInit(): void {
     this.loadAllOrders();
@@ -42,7 +43,7 @@ export class OrdersComponent implements OnInit {
       } else {
         console.log("Not loaded");
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   createOrder() {
@@ -54,7 +55,7 @@ export class OrdersComponent implements OnInit {
     this.data.closeOrder(order.id).subscribe(success => {
       if (success)
         this.loadAllOrders();
-    });
+    }, error => this.errorMessage = error);
   }
 
   deleteOrder(order: Order) {
@@ -62,7 +63,7 @@ export class OrdersComponent implements OnInit {
       if (success) {
         this.loadAllOrders();
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
 }

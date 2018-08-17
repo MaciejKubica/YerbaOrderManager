@@ -4,6 +4,8 @@
 </div>
 <p *ngIf="!orders"><em>Loading...</em></p>
 
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
 <table class='table' *ngIf="orders">
   <thead>
     <tr>

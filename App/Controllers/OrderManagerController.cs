@@ -39,13 +39,13 @@ namespace App.Controllers
         public IActionResult GetUsers()
         {
             try
-            {
+            {                
                 return Ok(_databaseRepository.GetAllUsers());
             }
             catch (Exception e)
             {
                 _logger.LogError("Failed to get users {0}", e);
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
 
@@ -65,7 +65,7 @@ namespace App.Controllers
             catch (Exception e)
             {
                 _logger.LogError("Failed to receive user by email {0} {1}", email, e);
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
 

@@ -22,6 +22,7 @@ export class YerbaAdderComponent implements OnInit {
 
   public selectedUser: any;
   public selectedYerba: any;
+  public errorMessage: string;
 
   public quantity: number;
   public isPaid: boolean = false;
@@ -45,7 +46,7 @@ export class YerbaAdderComponent implements OnInit {
       } else {
         console.log("Not loaded");
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   loadUsers() {
@@ -55,7 +56,7 @@ export class YerbaAdderComponent implements OnInit {
       } else {
         console.log("Not loaded");
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   onClick() {

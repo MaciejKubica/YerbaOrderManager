@@ -1,6 +1,7 @@
 <div class="row">
   <h1><span class="glyphicon glyphicon-grain"></span>Create new yerba</h1>
   <div class="col-md-5">
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
     <form (submit)="onCreate()" #theForm="ngForm" invalidate>
       <input type="hidden" class="form-control" name="id" [(ngModel)]="yerba.id" />
       <div class="form-group">
@@ -25,7 +26,7 @@
           <option [ngValue]="4">Slightly sweet</option>
           <option [ngValue]="5">Sweet</option>
           <option [ngValue]="6">Very sweet</option>
-        </select>        
+        </select>
       </div>
       <div class="form-group">
         <label for="size">Size:</label>

@@ -11,7 +11,7 @@ export class LoginComponent {
 
   constructor(private data: DataService, private router: Router) {}
 
-  errorMessage: string="";
+  errorMessage: string = "";  
 
   public creds = {
     username: "",

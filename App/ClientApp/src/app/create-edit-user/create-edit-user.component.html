@@ -1,5 +1,6 @@
 <div class="row">
   <h1><span class="glyphicon glyphicon-user"></span>Create New/Update user</h1>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
   <div class="col-md-5">
     <form (submit)="onCreate()" #theForm="ngForm" invalidate>
       <div class="form-group">
@@ -38,7 +39,7 @@
       <div class="form-group">
         <div class="form-check">
           <input type="checkbox" class="form-check-input" name="lockoutenabled" [(ngModel)]="usertoadd.lockoutenabled" id="checkBoxLocked" />
-          <label class="col-form-label" for="checkBoxLocked">Lock user</label>          
+          <label class="col-form-label" for="checkBoxLocked">Lock user</label>
         </div>
       </div>
 

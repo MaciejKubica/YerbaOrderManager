@@ -23,6 +23,7 @@ export class CreateEditUserComponent implements OnInit {
   public barLabel: string;
   public roles: any[];
   public currentUser: User;
+  public errorMessage: string;
 
   public patternDef = "^[a-z\d-_\s]+$";
 
@@ -47,7 +48,7 @@ export class CreateEditUserComponent implements OnInit {
         this.roles = this.data.rolesInSystem;
         this.roleSelections = this.data.rolesInSystem;       
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   getUserData(email: any) {
@@ -58,7 +59,7 @@ export class CreateEditUserComponent implements OnInit {
           this.roleSelections.find(x => x.id === item.id).isChecked = true;
         }
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   public openForEdit: boolean = false;
@@ -77,7 +78,7 @@ export class CreateEditUserComponent implements OnInit {
         } else {
           this.router.navigate(["/users"]);
         }
-      });
+      }, error => this.errorMessage = error);
     } else {
       this.data.createUser(this.usertoadd).subscribe(success => {
         if (!success) {
@@ -85,7 +86,7 @@ export class CreateEditUserComponent implements OnInit {
         } else {
           this.router.navigate(["/users"]);
         }
-      });
+      }, error => this.errorMessage = error);
     }    
   }
 

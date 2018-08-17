@@ -30,6 +30,7 @@ import { ShowSummaryComponent } from './showsummary/showsummary.component';
 import { AddYerbaToOrderComponent } from "./addyerbatoorder/addyerbatoorder.component";
 
 import { DataService} from "./shared/dataService"
+import { ErrorInterceptorProvider } from './shared/httperrorinterceptor';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { DataService} from "./shared/dataService"
   ],
   providers: [
     DataService,
-    AuthService
+    AuthService,
+    ErrorInterceptorProvider
     ],
   bootstrap: [AppComponent]
 })

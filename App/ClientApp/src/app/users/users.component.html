@@ -4,14 +4,16 @@
 </div>
 <p *ngIf="!users"><em>Loading...</em></p>
 
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
 <table class='table' *ngIf="users">
   <thead>
-  <tr>
-    <th>Email</th>
-    <th>Name</th>
-    <th>Is going to buy next order</th>
-    <th>Bank account</th>
-  </tr>
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Is going to buy next order</th>
+      <th>Bank account</th>
+    </tr>
   </thead>
   <tbody>
     <tr *ngFor="let user of users">

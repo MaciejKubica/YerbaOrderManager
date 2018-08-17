@@ -1,5 +1,6 @@
 <h1><span class="glyphicon glyphicon-cog"></span> User settings</h1>
 <form #theForm="ngForm" novalidate>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
   <div class="container">
     <div class="row">
       <div class="col-md-6">
@@ -69,12 +70,12 @@
           <input type="submit" class="btn btn-info btn-large" value="Make me next order token" (click)="onMakeToken()" />
         </div>
       </div>
-        <div class="col-md-2">
-          <div class="form-inline bottom-right">
-            <input type="submit" class="btn btn-primary btn-large" value="Create new order" (click)="onCreateNewOrder()" />
-          </div>
-          </div>        
+      <div class="col-md-2">
+        <div class="form-inline bottom-right">
+          <input type="submit" class="btn btn-primary btn-large" value="Create new order" (click)="onCreateNewOrder()" />
+        </div>
       </div>
+    </div>
     <br />
     <div class="row" ngModelGroup="account" password-matcher #account="ngModelGroup">
       <div class="col-md-5">

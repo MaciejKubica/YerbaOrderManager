@@ -22,6 +22,7 @@ export class YerbasComponent implements OnInit, AfterViewInit {
   }
 
   public yerbas = [];
+  public errorMessage: string;
 
   ngOnInit(): void {
 
@@ -47,7 +48,7 @@ export class YerbasComponent implements OnInit, AfterViewInit {
       } else {
         console.log("Not loaded");
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   createYerba() {
@@ -67,7 +68,7 @@ export class YerbasComponent implements OnInit, AfterViewInit {
       } else {
         this.loadYerbas();
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
 }

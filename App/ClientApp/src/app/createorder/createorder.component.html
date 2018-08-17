@@ -1,38 +1,39 @@
 <h1><span class="glyphicon glyphicon-modal-window" ></span> Create new order</h1>
 <div class="container-fluid">
-    <form (submit)="onCreate()" #f="ngForm" novalidate>
-      <div class="form-group">
-        <label for="orderDate">OrderDate:</label>        
-        <div class='input-group date'>
-          <input name="date"  type="text" class="form-control" a2e-datetimepicker (change)="dateChange($event.target.value)" [options]="a2eOptions" (click)="dateClick($event.target.value)" [(ngModel)]="date" date="ngModel" />
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar" (click)="dateClick($event.target.value)" ></span>
-          </span>
-        </div>
+  <form (submit)="onCreate()" #f="ngForm" novalidate>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div class="form-group">
+      <label for="orderDate">OrderDate:</label>
+      <div class='input-group date'>
+        <input name="date" type="text" class="form-control" a2e-datetimepicker (change)="dateChange($event.target.value)" [options]="a2eOptions" (click)="dateClick($event.target.value)" [(ngModel)]="date" date="ngModel" />
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar" (click)="dateClick($event.target.value)"></span>
+        </span>
       </div>
-      <div class="form-group">
-        <label for="selectedUser">Order executed by:</label>
-        <select   name="selectedUserExecutedBy" selectedUserExecutedBy="ngModel" class="form-control" [(ngModel)]="selectedUserExecutedBy" (change)="onChangeExecutedBy($event.target.value)">
-          <option *ngFor="let user of users" [disabled]="!isInRole" [value]="user.id" >{{user.name}}  [{{user.email}}]</option>
-        </select>
-      </div>
+    </div>
+    <div class="form-group">
+      <label for="selectedUser">Order executed by:</label>
+      <select name="selectedUserExecutedBy" selectedUserExecutedBy="ngModel" class="form-control" [(ngModel)]="selectedUserExecutedBy" (change)="onChangeExecutedBy($event.target.value)">
+        <option *ngFor="let user of users" [disabled]="!isInRole" [value]="user.id">{{user.name}}  [{{user.email}}]</option>
+      </select>
+    </div>
 
-      <div class="form-group">
-        <h2 for="yerbaAdder">Add new order item:</h2>
-        <app-yerbaadder (notify)="onNotify($event)" name="yerbaAdder"></app-yerbaadder>
-      </div>
+    <div class="form-group">
+      <h2 for="yerbaAdder">Add new order item:</h2>
+      <app-yerbaadder (notify)="onNotify($event)" name="yerbaAdder"></app-yerbaadder>
+    </div>
 
-      <div class="form-group">
-        <table class="table table-condensed table-hover">
+    <div class="form-group">
+      <table class="table table-condensed table-hover">
         <thead>
-        <tr>
-          <th>User</th>
-          <th>Yerba</th>
-          <th>Quantity</th>
-          <th>Paid</th>          
-          <th>Cost</th>
-          <th>Total</th>
-        </tr>
+          <tr>
+            <th>User</th>
+            <th>Yerba</th>
+            <th>Quantity</th>
+            <th>Paid</th>
+            <th>Cost</th>
+            <th>Total</th>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let orderItem of orderItems">
@@ -42,25 +43,25 @@
             <td>{{ orderItem.paid }}</td>
             <td>{{ orderItem.cost  | currency:'PLN':true:'2.2-4' }}</td>
             <td>{{ orderItem.cost * orderItem.quantity  | currency:'PLN':true:'2.2-4' }}</td>
-            <td>             
+            <td>
               <button class="btn btn-danger btn-sm" (click)="deleteOrderItem(orderItem)">Delete</button>
             </td>
           </tr>
         </tbody>
-        </table>
-      </div>
-     
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" name="closed" [(ngModel)]="order.isClosed" id="checkBoxClosed" />
-        <label for="checkBoxClosed">Closed</label>
-      </div>
+      </table>
+    </div>
 
-      <div class="form-group">
-        <div>Total Cost: {{totalcost  | currency:'PLN':true:'2.2-4'}}</div>        
-      </div>
-      <div class="form-group">
-        <input type="submit" class="btn btn-success" value="Create" />
-        <a [routerLink]='["/orders"]' class="btn btn-default">Cancel</a>
-      </div>
-    </form>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" name="closed" [(ngModel)]="order.isClosed" id="checkBoxClosed" />
+      <label for="checkBoxClosed">Closed</label>
+    </div>
+
+    <div class="form-group">
+      <div>Total Cost: {{totalcost  | currency:'PLN':true:'2.2-4'}}</div>
+    </div>
+    <div class="form-group">
+      <input type="submit" class="btn btn-success" value="Create" />
+      <a [routerLink]='["/orders"]' class="btn btn-default">Cancel</a>
+    </div>
+  </form>
    </div>

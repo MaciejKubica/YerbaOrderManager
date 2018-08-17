@@ -30,6 +30,7 @@ export class ShowSummaryComponent implements OnInit {
   yerbas: any[];
   paiments: any[];
   calculatedBill: any;
+  public errorMessage: string;
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
@@ -45,9 +46,9 @@ export class ShowSummaryComponent implements OnInit {
               this.calculateBillForPayUser();
               this.searchForPayUser();
             }
-          });          
+          }, error => this.errorMessage = error);          
         }
-      }, error => console.log(error));
+      }, error => this.errorMessage = error);
     }
   }
 
@@ -65,7 +66,7 @@ export class ShowSummaryComponent implements OnInit {
       if (success) {
         this.paiments = this.data.paimentsRequests;
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   loadUsers() {
@@ -75,7 +76,7 @@ export class ShowSummaryComponent implements OnInit {
       } else {
         console.log("Not loaded");
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   loadYerbas() {
@@ -85,7 +86,7 @@ export class ShowSummaryComponent implements OnInit {
       } else {
         console.log("Not loaded");
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   confirmPaiment(orderItem: OrderItem) {
@@ -101,7 +102,7 @@ export class ShowSummaryComponent implements OnInit {
           this.currentOrder.items.find(x => x.id === paimentRequest.orderitemid).paid = true;
           this.getPaiments();
         }
-      });
+      }, error => this.errorMessage = error);
   }
 
   checkIsPaid(orderItem: any) {

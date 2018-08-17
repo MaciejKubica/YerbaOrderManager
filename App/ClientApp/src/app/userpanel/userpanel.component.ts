@@ -49,6 +49,7 @@ export class UserPanelComponent implements OnInit {
   public orders = [];
   public userOrders = [];
   public paiments: PaimentRequest[];
+  public errorMessage: string;
 
    public paimentRequest = {
       orderitemid: 0,
@@ -73,7 +74,7 @@ export class UserPanelComponent implements OnInit {
       if (success) {
         this.userOrderItems = this.data.ordersItems.filter(oi => oi.paid === false);
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   getPaiments() {
@@ -82,7 +83,7 @@ export class UserPanelComponent implements OnInit {
         this.paiments = this.data.paimentsRequests.filter(oi => oi.userId === this.user.id);
         this.getOrderItems();
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   onGetYerba(id: number) {
@@ -129,7 +130,7 @@ export class UserPanelComponent implements OnInit {
       } else {
         localStorage.setItem("LoggedUser", JSON.stringify(this.user));
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   loadYerbas() {
@@ -139,7 +140,7 @@ export class UserPanelComponent implements OnInit {
       } else {
         console.log("Not loaded");
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   loadAllOrders() {
@@ -150,7 +151,7 @@ export class UserPanelComponent implements OnInit {
       } else {
         console.log("Not loaded");
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   closeOrder(order: Order) {
@@ -160,7 +161,7 @@ export class UserPanelComponent implements OnInit {
       } else {
         this.loadAllOrders();
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   onMakeToken(): void {
@@ -184,7 +185,7 @@ export class UserPanelComponent implements OnInit {
         this.getPaiments();        
         this.getOrderItems();
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   ngOnInit(): void {

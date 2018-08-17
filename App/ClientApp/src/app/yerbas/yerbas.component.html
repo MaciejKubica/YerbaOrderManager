@@ -1,4 +1,5 @@
 <h1><span class="glyphicon glyphicon-grain"></span> Yerbas</h1>
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 <div>
   <button class="btn btn-success btn-sm" *ngIf="hiddeButton" (click)="createYerba()">Create new yerba</button>
 </div>

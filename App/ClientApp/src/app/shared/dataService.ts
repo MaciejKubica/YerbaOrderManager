@@ -1,13 +1,16 @@
 import { Component, Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import "rxjs/add/operator/map";
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/retry';
 import { User } from './user';
 import { Yerba } from './yerba';
 import { Role } from './role';
 import { Order, OrderItem } from './order';
 import { ChangePassword} from './changepassword';
-import { Observable } from 'rxjs/Observable';
 import { PaimentRequest } from './paimentrequest';
+import { _throw } from 'rxjs/observable/throw';
 
 
 @Injectable()
@@ -22,14 +25,14 @@ export class DataService {
   public users = [];
   
   public loadUsers() {
-    let headers = new HttpHeaders()      
+    let headers = new HttpHeaders()
       .set("Authorization", "Bearer " + this.token);
 
     return this.http.get("/api/ordermanager/getusers", { headers })
       .map((data: any[]) => {
         this.users = data;
         return true;
-      }, error => console.error(error));
+      }, error => console.error(error)).retry(3); // optionally add the retry
   }
 
   public createUser(user: User) {
