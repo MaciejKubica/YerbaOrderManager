@@ -26,7 +26,7 @@ export class CreateOrderComponent implements OnInit {
     this.order.isPaid = false;
     this.order.orderDate = new Date();
     this.order.id = 0;
-    this.date = moment(new Date()).format("DD/MM/YYYY");
+    this.date = moment(new Date(), "DD/MM/YYYY");
 
     this.currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
 
