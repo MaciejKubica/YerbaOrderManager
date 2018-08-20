@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
 
   public orders = [];
   currentUser: User;
+  public errorMessage: string;
   
 
   hideCloseOrder(userMadeBy: string): boolean {
@@ -57,7 +58,7 @@ export class HomeComponent implements OnInit {
       } else {
         console.log("Not loaded");
       }
-    });
+    }, error => this.errorMessage = error);
   }
 
   addOrderItem(order: Order) {

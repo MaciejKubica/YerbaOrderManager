@@ -49,10 +49,17 @@
         </li>
 
         <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/closedorders"]' (click)='collapse()' *ngIf="hidden == false">
+            <span class='glyphicon glyphicon-calendar'></span> History Orders
+          </a>
+        </li>
+
+        <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/userpanel"]' (click)='collapse()' *ngIf="hidden == false">
             <span class='glyphicon glyphicon-asterisk'></span> User Panel
           </a>
-        </li>       
+        </li>
+        
       </ul>
     </div>
   </div>

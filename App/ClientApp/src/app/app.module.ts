@@ -28,6 +28,7 @@ import { EqualToValidatorDirective } from './shared/equalTo-validator-directive'
 import { RegisterComponent } from './register/register.component';
 import { ShowSummaryComponent } from './showsummary/showsummary.component';
 import { AddYerbaToOrderComponent } from "./addyerbatoorder/addyerbatoorder.component";
+import { ClosedOrdersComponent } from './closedorders/closedorders.component';
 
 import { DataService} from "./shared/dataService"
 import { ErrorInterceptorProvider } from './shared/httperrorinterceptor';
@@ -54,7 +55,8 @@ import { ErrorInterceptorProvider } from './shared/httperrorinterceptor';
     LoginComponent,
     RegisterComponent,
     ShowSummaryComponent,
-    AddYerbaToOrderComponent
+    AddYerbaToOrderComponent,
+    ClosedOrdersComponent
   ],
   imports: [    
     A2Edatetimepicker,
@@ -73,6 +75,7 @@ import { ErrorInterceptorProvider } from './shared/httperrorinterceptor';
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'showsummary', component: ShowSummaryComponent, canActivate: [AuthService], canLoad: [AuthService] },
+      { path: 'closedorders', component: ClosedOrdersComponent, canActivate: [AuthService], canLoad: [AuthService] },
       { path: 'addyerbatoorder', component: AddYerbaToOrderComponent, canActivate: [AuthService], canLoad: [AuthService] }
     ])    
   ],

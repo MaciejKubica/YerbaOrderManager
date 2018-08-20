@@ -1,0 +1,33 @@
+<h1><span class="glyphicon glyphicon-modal-window"></span> History Orders</h1>
+<p *ngIf="!orders"><em>Loading...</em></p>
+
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+<table class="table table-condensed table-hover table-striped" *ngIf="orders">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Date</th>
+    <th scope="col">Created on</th>
+    <th scope="col">Made by</th>
+    <th scope="col">Executed by</th>
+    <th scope="col">Total Qnt</th>
+    <th scope="col">Total Cost</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let order of orders">
+    <td>{{ order.id }}</td>
+    <td>{{ order.orderDate | date: 'dd-MM-yyyy' }}</td>
+    <td>{{ order.created | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
+    <td>{{ order.userMadeBy.name }}</td>
+    <td>{{ order.userExecutedBy.name }}</td>
+    <td>{{ order.totalQuantity }}</td>
+    <td>{{ order.totalCost | currency:'PLN':true:'2.2-4' }}</td>
+    <td>
+      <button class="btn btn-primary btn-sm" (click)="showOrder(order)">Show summary</button>      
+    </td>
+  </tr>
+  </tbody>
+</table>
