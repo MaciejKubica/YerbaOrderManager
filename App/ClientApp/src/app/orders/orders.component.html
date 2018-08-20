@@ -6,18 +6,19 @@
 
 <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 
-<table class='table' *ngIf="orders">
-  <thead>
+<table class="table table-condensed table-hover table-striped" *ngIf="orders">
+  <thead class="thead-dark">
     <tr>
-      <th>Id</th>
-      <th>Date</th>
-      <th>Created on</th>
-      <th>Made by</th>
-      <th>Executed by</th>
-      <th>Total Qnt</th>
-      <th>Total Cost</th>
-      <th>Closed</th>
-      <th>Paid</th>
+      <th scope="col">Id</th>
+      <th scope="col">Date</th>
+      <th scope="col">Created on</th>
+      <th scope="col">Made by</th>
+      <th scope="col">Executed by</th>
+      <th scope="col">Total Qnt</th>
+      <th scope="col">Total Cost</th>
+      <th scope="col">Closed</th>
+      <th scope="col">Paid</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>

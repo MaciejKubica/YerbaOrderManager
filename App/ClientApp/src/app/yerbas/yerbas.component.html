@@ -5,14 +5,15 @@
 </div>
 <p *ngIf="!yerbas"><em>Loading...</em></p>
 
-<table class='table' *ngIf="yerbas">
-  <thead>
+<table class="table table-condensed table-hover table-striped" *ngIf="yerbas">
+  <thead class="thead-dark">
     <tr>
-      <th>Name</th>
-      <th>Mark</th>
-      <th>Producent</th>
-      <th>Country</th>
-      <th>Cost</th>
+      <th scope="col">Name</th>
+      <th scope="col">Mark</th>
+      <th scope="col">Producent</th>
+      <th scope="col">Country</th>
+      <th scope="col">Cost</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>

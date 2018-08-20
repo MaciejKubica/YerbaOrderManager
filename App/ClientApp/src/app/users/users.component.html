@@ -6,13 +6,14 @@
 
 <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 
-<table class='table' *ngIf="users">
-  <thead>
+<table class="table table-condensed table-hover table-striped" *ngIf="users">
+  <thead class="thead-dark">
     <tr>
-      <th>Email</th>
-      <th>Name</th>
-      <th>Is going to buy next order</th>
-      <th>Bank account</th>
+      <th scope="col">Email</th>
+      <th scope="col">Name</th>
+      <th scope="col">Is going to buy next order</th>
+      <th scope="col">Bank account</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>

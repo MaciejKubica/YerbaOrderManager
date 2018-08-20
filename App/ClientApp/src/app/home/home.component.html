@@ -9,14 +9,15 @@
 </div>
 <div *ngIf="!loginRequired">
   <p>Below is the list of current orders select one and add your yerba if you want:</p>
-  <table class='table' *ngIf="orders">
-    <thead>
+  <table class="table table-condensed table-hover table-striped" *ngIf="orders">
+    <thead class="thead-dark">
     <tr>
-      <th>Id</th>
-      <th>Date</th>
-      <th>Created on</th>
-      <th>Made by</th>
-      <th>Executed by</th>
+      <th scope="col">Id</th>
+      <th scope="col">Date</th>
+      <th scope="col">Created on</th>
+      <th scope="col">Made by</th>
+      <th scope="col">Executed by</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
