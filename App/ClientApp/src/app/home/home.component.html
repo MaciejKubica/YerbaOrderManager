@@ -1,42 +1,42 @@
-<h1>Welcome to your Complex Yerba Order Manager CYOM</h1>
-<p>The system is helpful for ordering yerbas for many users. The purpose is to make an order by one user which have token to make and order yerba from Allegro. </p>
+<h1>{{ 'HOME.WELCOME' | translate }}</h1>
+<p>{{ 'HOME.SYSTEMDESCRIPTION' | translate }}</p>
 <ul>
-  <li>If you want to create new order make yourself a token. <a [routerLink]='["/userpanel"]'>User panel</a></li>
-  <li>If administrator already set you a token go and <a [routerLink]='["/createorder"]'>create order</a> </li>
+  <li>{{ 'HOME.NEWORDERCREATE' | translate }} <a [routerLink]='["/userpanel"]'>{{ 'HOME.USERPANEL' | translate }}</a></li>
+  <li>{{ 'HOME.CREATEORDERINFO' | translate }} <a [routerLink]='["/createorder"]'>{{ 'HOME.CREATEORDER' | translate }}</a> </li>
 </ul>
 <div *ngIf="loginRequired">
-  <a [routerLink]='["/login"]'>Login to</a> system to have more detailed information
+  <a [routerLink]='["/login"]'>{{ 'HOME.LOGIN' | translate }}</a> {{ 'HOME.LOGINDETAILS' | translate }}
 </div>
 <div *ngIf="!loginRequired">
-  <p>Below is the list of current orders select one and add your yerba if you want:</p>
+  <p>{{ 'HOME.LISTOFCURRENTORDERS' | translate }}</p>
   <table class="table table-condensed table-hover table-striped" *ngIf="orders">
     <thead class="thead-dark">
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Date</th>
-      <th scope="col">Created on</th>
-      <th scope="col">Made by</th>
-      <th scope="col">Executed by</th>
-      <th></th>
-    </tr>
+      <tr>
+        <th scope="col">{{ 'HOME.IDCOL' | translate }}</th>
+        <th scope="col">{{ 'HOME.DATECOL' | translate }}</th>
+        <th scope="col">{{ 'HOME.CREATEDCOL' | translate }}</th>
+        <th scope="col">{{ 'HOME.MADEBYCOL' | translate }}</th>
+        <th scope="col">{{ 'HOME.EXECUTEDBYCOL' | translate }}</th>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let order of orders">
-      <td>{{ order.id }}</td>
-      <td>{{ order.orderDate | date: 'dd-MM-yyyy' }}</td>
-      <td>{{ order.created | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
-      <td>{{ order.userMadeBy.name }}</td>
-      <td>{{ order.userExecutedBy.name }}</td>
-      <td>
-        <button class="btn btn-primary btn-sm" [disabled]="!hideCloseOrder(order.userMadeBy.email)" (click)="closeOrder(order)">Close</button>
-        <button class="btn btn-success btn-sm" [disabled]="order.isClosed" (click)="addOrderItem(order)">Add Yerba to order</button>
-        <button class="btn btn-danger btn-sm" (click)="showSummary(order)">Show summary</button>
-      </td>
-    </tr>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.orderDate | date: 'dd-MM-yyyy' }}</td>
+        <td>{{ order.created | date: 'dd-MM-yyyy HH:mm:ss' }}</td>
+        <td>{{ order.userMadeBy.name }}</td>
+        <td>{{ order.userExecutedBy.name }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" [disabled]="!hideCloseOrder(order.userMadeBy.email)" (click)="closeOrder(order)">{{ 'HOME.CLOSEBTN' | translate }}</button>
+          <button class="btn btn-success btn-sm" [disabled]="order.isClosed" (click)="addOrderItem(order)">{{ 'HOME.ADDYERBATOORDER' | translate }}</button>
+          <button class="btn btn-danger btn-sm" (click)="showSummary(order)">{{ 'HOME.SHOWSUMMARY' | translate }}</button>
+        </td>
+      </tr>
     </tbody>
   </table>
   <div *ngIf="orders == null || orders.length == 0">
-    There is no open orders.
+    {{ 'HOME.NOORDERS' | translate }}
   </div>
 
 </div>

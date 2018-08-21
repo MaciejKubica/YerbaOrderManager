@@ -1,0 +1,53 @@
+{
+  "NAVMENU": {
+    "HOME": "Strona Główna",
+    "LOGIN": "Logowanie",
+    "LOGOFF": "Wyloguj",
+    "USERS": "Użytkownicy",
+    "YERBAS": "Lista Yerb",
+    "ORDERS": "Zamówienia",
+    "HISTORYORDERS": "Historia zamówień",
+    "USERPANEL": "Panel Użytkownika",
+    "LANGUAGES": "Languages"
+  },
+
+  "HOME": {
+    "WELCOME": "Witaj w kompleksowym systemie do zamawiania Yerby made by MKU CYOM",
+    "SYSTEMDESCRIPTION": "The system is helpful for ordering yerbas for many users. The purpose is to make an order by one user which have token to make and order yerba from Allegro.",
+    "NEWORDERCREATE": "Jeżeli chcesz utworzyć nowe zamówienie musisz mieć token otrzymany przez administratora",
+    "CREATEORDERINFO": "Jeżeli administrator dał Ci już token możesz",
+    "USERPANEL": "Panel użytkownika",
+    "CREATEORDER": "Utwórzyć zamówienie",
+    "LOGIN": "Zaloguj",
+    "LOGINDETAILS": "się do systemu w celu wykonania wielu akcji",
+    "LISTOFCURRENTORDERS": "Poniżej zdefiniowano listę aktywnych zamówień:",
+    "IDCOL": "Id",
+    "DATECOL": "Data zamówienia",
+    "CREATEDCOL": "Utworzone w",
+    "MADEBYCOL": "Utworzone przez",
+    "EXECUTEDBYCOL": "Wykonywane przez",
+    "CLOSEBTN": "Zamknij",
+    "ADDYERBATOORDER": "Dodaj yerbę do zamówienia",
+    "SHOWSUMMARY": "Pokaż zamówienie",
+    "NOORDERS": "Nie ma żadnego otwartego zamówienia."
+  },
+
+  "ADDYERBATOORDER": {
+    "TITLE": "Dodaj yerbę do zamówienia",
+    "ORDERID": "Identyfikator zamówienia:",
+    "ORDERCREATED": "Data utworzenia zamówienia:",
+    "ORDERDATE": "Data zamówienia:",
+    "ORDEREXECUTEDBY": "Zamówienie wykonane przez:",
+    "ORDERMADEBY": "Zamówienie utworzone przez:",
+    "TOTALQUANTITY": "Całkowita ilość:",
+    "TOTALCOST": "Całkowity koszt:",
+    "ADDNEWORDERITEM": "Dodaj element do zamówienia",
+    "USERCOL": "Użytkownik",
+    "YERBACOL": "Yerba",
+    "QUANTITYCOL": "Ilość",
+    "PAIDCOL": "Zapłacone",
+    "COSTCOL": "Cena",
+    "TOTALCOL": "Całkowita cena"
+  }
+
+}

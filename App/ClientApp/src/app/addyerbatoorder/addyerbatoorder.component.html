@@ -1,34 +1,34 @@
-<h1>Add yerba to order</h1>
+<h1>{{ 'ADDYERBATOORDER.TITLE' | translate:param }}</h1>
 <div class="row">
   <div class="form-group">
-    <label>Order id: </label> {{currentOrder?.id}}
+    <label>{{ 'ADDYERBATOORDER.ORDERID' | translate:param }} </label> {{currentOrder?.id}}
   </div>
 
   <div class="form-group">
-    <label>Order created:</label> {{currentOrder.created | date: 'dd-MM-yyyy HH:mm:ss'}}
+    <label>{{ 'ADDYERBATOORDER.ORDERCREATED' | translate:param }}</label> {{currentOrder.created | date: 'dd-MM-yyyy HH:mm:ss'}}
   </div>
 
   <div class="form-group">
-    <label>OrderDate: </label> {{currentOrder.orderDate | date: 'dd-MM-yyyy'}}
+    <label>{{ 'ADDYERBATOORDER.ORDERDATE' | translate:param }}</label> {{currentOrder.orderDate | date: 'dd-MM-yyyy'}}
   </div>
   <div class="form-group">
-    <label>Order executed by: </label> {{currentOrder.userExecutedBy.name}} {{currentOrder.userExecutedBy.email}}
+    <label>{{ 'ADDYERBATOORDER.ORDEREXECUTEDBY' | translate:param }}</label> {{currentOrder.userExecutedBy.name}} {{currentOrder.userExecutedBy.email}}
   </div>
   <div class="form-group">
-    <label>Order made by: </label> {{currentOrder.userMadeBy.name}} {{currentOrder.userMadeBy.email}}
-  </div>
-
-  <div class="form-group">
-    <label>Total Quantity: </label> {{currentOrder.totalQuantity}}
+    <label>{{ 'ADDYERBATOORDER.ORDERMADEBY' | translate:param }}</label> {{currentOrder.userMadeBy.name}} {{currentOrder.userMadeBy.email}}
   </div>
 
   <div class="form-group">
-    <label>Total Cost: </label> {{currentOrder.totalCost | currency:'PLN':true:'2.2-4'}}
+    <label>{{ 'ADDYERBATOORDER.TOTALQUANTITY' | translate:param }}</label> {{currentOrder.totalQuantity}}
+  </div>
+
+  <div class="form-group">
+    <label>{{ 'ADDYERBATOORDER.TOTALCOST' | translate:param }}</label> {{currentOrder.totalCost | currency:'PLN':true:'2.2-4'}}
   </div>
 
   <br />
   <div class="form-group">
-    <h2 for="yerbaAdder">Add new order item:</h2>
+    <h2 for="yerbaAdder">{{ 'ADDYERBATOORDER.ADDNEWORDERITEM' | translate:param }}</h2>
     <app-yerbaadder (notify)="onNotify($event)" name="yerbaAdder"></app-yerbaadder>
   </div>
 
@@ -37,12 +37,12 @@
     <table class="table table-condensed table-hover table-striped">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">User</th>
-          <th scope="col">Yerba</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Paid</th>
-          <th scope="col">Cost</th>
-          <th scope="col">Total</th>
+          <th scope="col">{{ 'ADDYERBATOORDER.USERCOL' | translate:param }}</th>
+          <th scope="col">{{ 'ADDYERBATOORDER.YERBACOL' | translate:param }}</th>
+          <th scope="col">{{ 'ADDYERBATOORDER.QUANTITYCOL' | translate:param }}</th>
+          <th scope="col">{{ 'ADDYERBATOORDER.PAIDCOL' | translate:param }}</th>
+          <th scope="col">{{ 'ADDYERBATOORDER.COSTCOL' | translate:param }}</th>
+          <th scope="col">{{ 'ADDYERBATOORDER.TOTALCOL' | translate:param }}</th>
         </tr>
       </thead>
       <tbody>

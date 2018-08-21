@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router"
 import { User } from '../shared/user'
 import { Yerba } from '../shared/yerba'
 import { Order, OrderItem, CompactUser } from '../shared/order'
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: "app-addyerbatoorder",
@@ -39,7 +40,7 @@ export class AddYerbaToOrderComponent implements OnInit {
 
   currentOrder: Order;
 
-  constructor(private data: DataService, private router: Router, private activatedRouter: ActivatedRoute) {
+  constructor(private data: DataService, private router: Router, private activatedRouter: ActivatedRoute, public translate: TranslateService) {
   }
   
   onNotify(message: OrderItem): void {

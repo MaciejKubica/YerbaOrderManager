@@ -14,52 +14,58 @@
       <ul class='nav navbar-nav'>
         <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
           <a [routerLink]='["/"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-home'></span> Home
+            <span class='glyphicon glyphicon-home'></span> {{ 'NAVMENU.HOME' | translate:param }}
           </a>
         </li>
 
         <li [routerLinkActive]='["link-active"]' *ngIf="hidden == true">
           <a [routerLink]='["/login"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-log-in'></span> Login
+            <span class='glyphicon glyphicon-log-in'></span>  {{ 'NAVMENU.LOGIN' | translate:param }}
           </a>
         </li>
 
         <li [routerLinkActive]='["link-active"]' *ngIf="hidden == false">
           <a [routerLink]='["/"]' (click)='logoff()'>
-            <span class='glyphicon glyphicon-log-out'></span> Logoff
+            <span class='glyphicon glyphicon-log-out'></span> {{ 'NAVMENU.LOGOFF' | translate:param }}
           </a>
         </li>
 
         <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/users"]' (click)='collapse()' *ngIf="isInRole == true">
-            <span class='glyphicon glyphicon-user'></span> Users
+            <span class='glyphicon glyphicon-user'></span> {{ 'NAVMENU.USERS' | translate:param }}
           </a>
         </li>
 
         <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/yerbas"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-th-list'></span> Yerbas
+            <span class='glyphicon glyphicon-th-list'></span> {{ 'NAVMENU.YERBAS' | translate:param }}
           </a>
         </li>
 
         <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/orders"]' (click)='collapse()' *ngIf="hidden == false">
-            <span class='glyphicon glyphicon-calendar'></span> Orders
+            <span class='glyphicon glyphicon-calendar'></span> {{ 'NAVMENU.ORDERS' | translate:param }}
           </a>
         </li>
 
         <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/closedorders"]' (click)='collapse()' *ngIf="hidden == false">
-            <span class='glyphicon glyphicon-calendar'></span> History Orders
+            <span class='glyphicon glyphicon-calendar'></span> {{ 'NAVMENU.HISTORYORDERS' | translate:param }}
           </a>
         </li>
 
         <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/userpanel"]' (click)='collapse()' *ngIf="hidden == false">
-            <span class='glyphicon glyphicon-asterisk'></span> User Panel
+            <span class='glyphicon glyphicon-asterisk'></span> {{ 'NAVMENU.USERPANEL' | translate:param }}
           </a>
         </li>
-        
+
+        <li [routerLinkActive]='["link-active"]'>
+          <select class="form-control" #langSelect (change)="translate.use(langSelect.value)">
+            <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+          </select>
+        </li>
+
       </ul>
     </div>
   </div>

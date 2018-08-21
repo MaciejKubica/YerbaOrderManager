@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DataService } from "../shared/dataService"
 import { Role } from "../shared/role";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-nav-menu',
@@ -10,7 +11,13 @@ import { Role } from "../shared/role";
 export class NavMenuComponent {
   isExpanded = false;
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, public translate: TranslateService) {
+    translate.addLangs(['en', 'pl']);
+    translate.setDefaultLang('pl');
+
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|pl/) ? browserLang : 'pl');
+  }
 
   get hidden() : boolean {
     return this.data.loginRequired;

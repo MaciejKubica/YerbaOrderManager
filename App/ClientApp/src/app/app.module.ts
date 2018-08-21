@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { A2Edatetimepicker } from 'ng2-eonasdan-datetimepicker';
 import { DateTimePickerDirective } from 'ng2-eonasdan-datetimepicker/dist/datetimepicker.directive'
@@ -32,7 +32,12 @@ import { ClosedOrdersComponent } from './closedorders/closedorders.component';
 
 import { DataService} from "./shared/dataService"
 import { ErrorInterceptorProvider } from './shared/httperrorinterceptor';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -62,7 +67,14 @@ import { ErrorInterceptorProvider } from './shared/httperrorinterceptor';
     A2Edatetimepicker,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,    
-    FormsModule,    
+    FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },   
       { path: 'users', component: UsersComponent, canActivate: [AuthService], canLoad: [AuthService] },

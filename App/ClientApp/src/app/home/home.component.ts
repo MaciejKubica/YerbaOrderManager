@@ -3,7 +3,7 @@ import { DataService } from "../shared/dataService"
 import { User } from "../shared/user"
 import { Router } from "@angular/router"
 import { Order } from '../shared/order';
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  constructor(private data: DataService, private router: Router) {
+  constructor(private data: DataService, private router: Router, public translate: TranslateService) {
     this.currentUser = new User();
   }
 

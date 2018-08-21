@@ -1,0 +1,52 @@
+{
+  "NAVMENU": {
+    "HOME": "Home",
+    "LOGIN": "Login",
+    "LOGOFF": "Logoff",
+    "USERS": "Users",
+    "YERBAS": "Yerbas",
+    "ORDERS": "Orders",
+    "HISTORYORDERS": "History Orders",
+    "USERPANEL": "User Panel",
+    "LANGUAGES": "Languages"
+  },
+
+  "HOME": {
+    "WELCOME": "Welcome to your Complex Yerba Order Manager CYOM",
+    "SYSTEMDESCRIPTION": "The system is helpful for ordering yerbas for many users. The purpose is to make an order by one user which have token to make and order yerba from Allegro.",
+    "NEWORDERCREATE": "If you want to create new order make yourself a token.",
+    "CREATEORDERINFO": "If administrator already set you a token go and",
+    "USERPANEL": "User Panel",
+    "CREATEORDER": "Create order",
+    "LOGIN": "Login",
+    "LOGINDETAILS": "to system to have more detailed information",
+    "LISTOFCURRENTORDERS": "Below is the list of current orders select one and add your yerba if you want:",
+    "IDCOL": "Id",
+    "DATECOL": "Date",
+    "CREATEDCOL": "Created on",
+    "MADEBYCOL": "Made by",
+    "EXECUTEDBYCOL": "Executed by",
+    "CLOSEBTN": "Close",
+    "ADDYERBATOORDER": "Add Yerba to order",
+    "SHOWSUMMARY": "Show summary",
+    "NOORDERS": "There is no open orders."
+  },
+
+  "ADDYERBATOORDER": {
+    "TITLE": "Add yerba to order",
+    "ORDERID": "Order id:",
+    "ORDERCREATED": "Order created:",
+    "ORDERDATE": "Order date:",
+    "ORDEREXECUTEDBY": "Order executed by:",
+    "ORDERMADEBY": "Order made by:",
+    "TOTALQUANTITY": "Total Quantity:",
+    "TOTALCOST": "Total Cost:",
+    "ADDNEWORDERITEM": "Add new order item:",
+    "USERCOL": "User",
+    "YERBACOL": "Yerba",
+    "QUANTITYCOL": "Quantity",
+    "PAIDCOL": "Paid",
+    "COSTCOL": "Cost",
+    "TOTALCOL": "Total"
+  }
+}
