@@ -1,4 +1,11 @@
 {
+  "GLOBAL": {
+    "LOADING": "Wczytywanie",
+    "CANCEL": "Anuluj",
+    "UPDATE": "Aktualizuj",
+    "CREATE": "Utwórz"
+  },
+
   "NAVMENU": {
     "HOME": "Strona Główna",
     "LOGIN": "Logowanie",
@@ -48,6 +55,34 @@
     "PAIDCOL": "Zapłacone",
     "COSTCOL": "Cena",
     "TOTALCOL": "Całkowita cena"
+  },
+
+  "CLOSEDORDERS": {
+    "TITLE": "Zamknięte zamówienia",
+    "IDCOL": "Identyfikator",
+    "DATECOL": "Data zamówienia",
+    "CREATEDCOL": "Utworzone w",
+    "MADEBYCOL": "Utworzone przez",
+    "EXECUTEDBYCOL": "Wykonywane przez",
+    "TOTALQUANTITYCOL": "Całkowita ilość",
+    "TOTALCOSTCOL": "Całkowity koszt",
+    "SHOWSUMMARY": "Pokaż zamówienie"
+  },
+
+  "CREATEEDITUSER": {
+    "TITLE": "Utwórz lub dokonaj edycji na użytkowniku",
+    "EMAIL": "Email",
+    "EMAILISREQUIRED": "Adres email jest wymagany",
+    "EMAILISNOTPROPER": "Adres email jest niepoprawny",
+    "NAME": "Nazwa (imię, pseudonim)",
+    "NAMEISREQUIRED": "Nazwa jest wymagana",
+    "NAMESHOULDHAVELETTERS": "Nazwa powinna posiadać litery",
+    "PASSWORD": "Hasło",
+    "LOCKUSER": "Blokada użytkownika",
+    "BANKACCOUNTNUMBER": "Numer konta bankowego",
+    "BANKACCOUNTTOSHORT": "Długość konta bankowego za krótka",
+    "BANKACCOUNTTOLONG": "Długość konta bankowego za długa",
+    "ROLES": "Role:"
   }
 
 }

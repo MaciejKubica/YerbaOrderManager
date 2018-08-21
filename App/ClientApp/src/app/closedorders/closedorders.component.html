@@ -1,18 +1,18 @@
-<h1><span class="glyphicon glyphicon-modal-window"></span> History Orders</h1>
-<p *ngIf="!orders"><em>Loading...</em></p>
+<h1><span class="glyphicon glyphicon-modal-window"></span> {{ 'CLOSEDORDERS.TITLE' | translate:param }}</h1>
+<p *ngIf="!orders"><em>{{ 'GLOBAL.LOADING' | translate:param }}...</em></p>
 
 <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 
 <table class="table table-condensed table-hover table-striped" *ngIf="orders">
   <thead class="thead-dark">
   <tr>
-    <th scope="col">Id</th>
-    <th scope="col">Date</th>
-    <th scope="col">Created on</th>
-    <th scope="col">Made by</th>
-    <th scope="col">Executed by</th>
-    <th scope="col">Total Qnt</th>
-    <th scope="col">Total Cost</th>
+    <th scope="col">{{ 'CLOSEDORDERS.IDCOL' | translate:param }}</th>
+    <th scope="col">{{ 'CLOSEDORDERS.DATECOL' | translate:param }}</th>
+    <th scope="col">{{ 'CLOSEDORDERS.CREATEDCOL' | translate:param }}</th>
+    <th scope="col">{{ 'CLOSEDORDERS.MADEBYCOL' | translate:param }}</th>
+    <th scope="col">{{ 'CLOSEDORDERS.EXECUTEDBYCOL' | translate:param }}</th>
+    <th scope="col">{{ 'CLOSEDORDERS.TOTALQUANTITYCOL' | translate:param }}</th>
+    <th scope="col">{{ 'CLOSEDORDERS.TOTALCOSTCOL' | translate:param }}</th>
     <th></th>
   </tr>
   </thead>
@@ -26,7 +26,7 @@
     <td>{{ order.totalQuantity }}</td>
     <td>{{ order.totalCost | currency:'PLN':true:'2.2-4' }}</td>
     <td>
-      <button class="btn btn-primary btn-sm" (click)="showOrder(order)">Show summary</button>      
+      <button class="btn btn-primary btn-sm" (click)="showOrder(order)">{{ 'CLOSEDORDERS.SHOWSUMMARY' | translate:param }}</button>      
     </td>
   </tr>
   </tbody>

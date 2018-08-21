@@ -1,4 +1,11 @@
 {
+  "GLOBAL": {
+    "LOADING": "Loading",
+    "CANCEL": "Cancel",
+    "UPDATE": "Update",
+    "CREATE": "Create"
+  },
+
   "NAVMENU": {
     "HOME": "Home",
     "LOGIN": "Login",
@@ -48,5 +55,34 @@
     "PAIDCOL": "Paid",
     "COSTCOL": "Cost",
     "TOTALCOL": "Total"
+  },
+
+  "CLOSEDORDERS": {
+    "TITLE": "History orders",
+    "IDCOL": "Id",
+    "DATECOL": "Order date",
+    "CREATEDCOL": "Created on",
+    "MADEBYCOL": "Created by",
+    "EXECUTEDBYCOL": "Made by",
+    "TOTALQUANTITYCOL": "Total Qnt",
+    "TOTALCOSTCOL": "Total Cost",
+    "SHOWSUMMARY": "Show summary"
+  },
+
+  "CREATEEDITUSER": {
+    "TITLE": "Create New/Update user",
+    "EMAIL": "Email",
+    "EMAILISREQUIRED": "Email is required",
+    "EMAILISNOTPROPER": "Email is not proper",
+    "NAME": "Name",
+    "NAMEISREQUIRED": "Name is required",
+    "NAMESHOULDHAVELETTERS": "Name should have letters",
+    "PASSWORD": "Password",
+    "LOCKUSER": "Lock user",
+    "BANKACCOUNTNUMBER": "Bank account number",
+    "BANKACCOUNTTOSHORT": "Bank account to short",
+    "BANKACCOUNTTOLONG": "Bank account to long",
+    "ROLES": "Roles:"
   }
+
 }

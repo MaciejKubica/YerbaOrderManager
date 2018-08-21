@@ -1,37 +1,37 @@
 <div class="row">
-  <h1><span class="glyphicon glyphicon-user"></span>Create New/Update user</h1>
+  <h1><span class="glyphicon glyphicon-user"></span>{{ 'CREATEEDITUSER.TITLE' | translate:param }}</h1>
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
   <div class="col-md-5">
     <form (submit)="onCreate()" #theForm="ngForm" invalidate>
       <div class="form-group">
-        <label for="email">Email:</label>
+        <label for="email">{{'CREATEEDITUSER.EMAIL' | translate:param }}:</label>
         <input type="email" class="form-control" name="email" [(ngModel)]="usertoadd.email" email #email="ngModel" />
         <div *ngIf="email.invalid && (email.dirty || email.touched)"
              class="alert alert-danger">
           <div *ngIf="email.errors.required">
-            Email is required.
+            {{'CREATEEDITUSER.EMAILISREQUIRED' | translate:param }}
           </div>
           <div *ngIf="email.errors.email">
-            Email is not proper
+            {{'CREATEEDITUSER.EMAILISNOTPROPER' | translate:param }}
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="nameField">Name:</label>
+        <label for="nameField">{{'CREATEEDITUSER.NAME' | translate:param }}:</label>
         <input type="text" class="form-control" name="nameField" [(ngModel)]="usertoadd.name" [pattern]="patternDef" #nameField="ngModel" />
         <div *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)"
              class="alert alert-danger">
 
           <div *ngIf="nameField.errors?.required">
-            Name is required.
+            {{'CREATEEDITUSER.NAMEISREQUIRED' | translate:param }}
           </div>
           <div *ngIf="nameField.errors?.pattern">
-            Name should have letters
+            {{'CREATEEDITUSER.NAMESHOULDHAVELETTERS' | translate:param }}
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="userPassword">Password:</label>
+        <label for="userPassword">{{'CREATEEDITUSER.PASSWORD' | translate:param }}:</label>
         <input type="password" class="form-control" name="userPassword" [(ngModel)]="usertoadd.password" required #userpassword="ngModel" />
         <password-strength-bar [passwordToCheck]="usertoadd.password" [barLabel]="barLabel"></password-strength-bar>
       </div>
@@ -39,34 +39,34 @@
       <div class="form-group">
         <div class="form-check">
           <input type="checkbox" class="form-check-input" name="lockoutenabled" [(ngModel)]="usertoadd.lockoutenabled" id="checkBoxLocked" />
-          <label class="col-form-label" for="checkBoxLocked">Lock user</label>
+          <label class="col-form-label" for="checkBoxLocked">{{'CREATEEDITUSER.LOCKUSER' | translate:param }}</label>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="bankAccount">Bank account number:</label>
+        <label for="bankAccount">{{'CREATEEDITUSER.BANKACCOUNTNUMBER' | translate:param }}:</label>
         <input type="text" class="form-control" name="bankAccount" [(ngModel)]="usertoadd.bankAccount" minlength="11" maxlength="17" #bankAccount="ngModel" />
         <div *ngIf="bankAccount.invalid && (bankAccount.dirty || bankAccount.touched)"
              class="alert alert-danger">
 
           <div *ngIf="bankAccount.errors.minlength">
-            Bank account to short
+            {{'CREATEEDITUSER.BANKACCOUNTTOSHORT' | translate:param }}
           </div>
           <div *ngIf="bankAccount.errors.maxlength">
-            Bank account to long
+            {{'CREATEEDITUSER.BANKACCOUNTTOLONG' | translate:param }}
           </div>
         </div>
       </div>
 
       <br />
-      <h2>Roles:</h2>
+      <h2>{{'CREATEEDITUSER.ROLES' | translate:param }}</h2>
       <div class="form-group" *ngFor="let role of roleSelections">
         <input type="checkbox" [value]="role.isChecked" [checked]="role.isChecked" (change)="$event.target.checked ? role.isChecked = true : role.isChecked = false"> {{role.name}}
       </div>
 
       <div class="form-group">
-        <input type="submit" class="btn btn-success" value="{{openForEdit ? 'Update' : 'Create'}}" [disabled]="theForm.invalid" />
-        <a [routerLink]='["/users"]' class="btn btn-default">Cancel</a>
+        <input type="submit" class="btn btn-success" value="{{(openForEdit ? 'GLOBAL.CREATE' : 'GLOBAL.UPDATE') | translate:param}}" [disabled]="theForm.invalid" />
+        <a [routerLink]='["/users"]' class="btn btn-default">{{ 'GLOBAL.CANCEL' | translate:param }}</a>
       </div>
     </form>
   </div>
