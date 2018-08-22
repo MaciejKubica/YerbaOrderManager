@@ -168,11 +168,46 @@
     "BANKACCOUNTCOL": "Bank account",
     "LOCKACCOUNT": "Lock account"
   },
+
+  "USERPANEL": {
+
+  },
+
+  "YERBACREATE": {
+    "TITLE": "Create new yerba",
+    "NAME": "Name of yerba mate",
+    "URL": "Link to sales",
+    "NOTVALIDURL": "Url is not valid",
+    "GENTIAN": "Gentian",
+    "CHOOSEYERBAGENTIAN": "Choose yerba gentian",
+    "VERYBITTER": "Very bitter",
+    "BITTER": "Bitter",
+    "NEUTRAL": "Neutral",
+    "SLIGHTLYSWEET": "Slightly sweet",
+    "SWEET": "Sweet",
+    "VERYSWEET": "Very Sweet",
+    "SIZE": "Size",
+    "PRODUCER": "Producer",
+    "MARK": "Mark",
+    "COUNTRY": "Country",
+    "COMPONENTS": "Components",
+    "DESCRIPTION": "Description",
+    "COST": "Cost"
+  },
+
+  "YERBAADDER": {
+    "ORDEREXECUTEDBY": "Order executed by",
+    "SELECTYERBA": "Select yerba",
+    "QUANTITY": "Quantity",
+    "PAID": "Is paid",
+    "ADDITEM": "Add item"
+  },
+
   "LOGIN": {
     "TITLE": "Login",
     "USERNAME": "Username",
     "PASSWORD": "Password",
-    "LOGIN": "Login" 
+    "LOGIN": "Login"
   }
 
 }

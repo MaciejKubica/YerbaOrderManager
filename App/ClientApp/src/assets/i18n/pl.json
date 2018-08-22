@@ -116,7 +116,7 @@
     "TOTALCOSTCOL": "Całkowity koszt",
     "CLOSEDCOL": "Zamknięte?",
     "PAIDCOL": "Zapłacone?",
-    "CREATENEWORDER": "Utwórz nowe zamówienie" 
+    "CREATENEWORDER": "Utwórz nowe zamówienie"
   },
 
   "REGISTER": {
@@ -167,6 +167,41 @@
     "BANKACCOUNTCOL": "Konto bankowe",
     "LOCKACCOUNT": "Zablokuj użytkownika"
   },
+
+  "USERPANEL": {
+
+  },
+
+  "YERBACREATE": {
+    "TITLE": "Utwórz nowy rekord Yerba",
+    "NAME": "Nazwa yerba mate",
+    "URL": "Link do strony sprzedaży",
+    "NOTVALIDURL": "Adres jest niepoprawny",
+    "GENTIAN": "Goryczka",
+    "CHOOSEYERBAGENTIAN": "Wybierz goryczkę",
+    "VERYBITTER": "Bardzo gorzki",
+    "BITTER": "Gorzki",
+    "NEUTRAL": "Neutralny",
+    "SLIGHTLYSWEET": "Lekko słodki",
+    "SWEET": "Słodki",
+    "VERYSWEET": "Bardzo słodki",
+    "SIZE": "Wielkość",
+    "PRODUCER": "Producent",
+    "MARK": "Marka",
+    "COUNTRY": "Kraj pochodzenia",
+    "COMPONENTS": "Skład",
+    "DESCRIPTION": "Opis",
+    "COST": "Cena"
+  },
+
+  "YERBAADDER": {
+    "ORDEREXECUTEDBY": "Zamówienie realizowane przez",
+    "SELECTYERBA": "Wybierz yerbę",
+    "QUANTITY": "Ilość",
+    "PAID": "Zapłacony",
+    "ADDITEM": "Dodaj element"
+  },
+
   "LOGIN": {
     "TITLE": "Zaloguj",
     "USERNAME": "Nazwa użytkownika",

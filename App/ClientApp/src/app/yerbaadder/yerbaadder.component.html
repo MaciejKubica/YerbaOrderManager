@@ -1,7 +1,7 @@
 <form class="form-inline-row" #theForm="ngForm" invalidate>
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
   <div class="form-group">
-    <label class="col-sm-2 col-form-label" for="selectedUser">Order executed by:</label>
+    <label class="col-sm-2 col-form-label" for="selectedUser">{{'YERBAADDER.ORDEREXECUTEDBY' | translate:param }}:</label>
     <div class="col-sm-4">
       <select class="form-control" [(ngModel)]="selectedUser" (change)="onChangeUser($event.target.value)" required>
         <option *ngFor="let user of users" [value]="user.id">{{user.name}} [{{user.email}}]</option>
@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 col-form-label" for="selectedYerba">Select yerba:</label>
+    <label class="col-sm-2 col-form-label" for="selectedYerba">{{'YERBAADDER.SELECTYERBA' | translate:param }}:</label>
     <div class="col-sm-4">
       <select class="form-control" [(ngModel)]="selectedYerba" (change)="onChangeYerba($event.target.value)" required>
         <option *ngFor="let yerba of yerbas" [value]="yerba.id">{{yerba.name}}</option>
@@ -18,7 +18,7 @@
   </div>
   <div class="form-row">
     <div class="form-group">
-      <label class="col-sm-2 col-form-label" for="quantity">Quantity:</label>
+      <label class="col-sm-2 col-form-label" for="quantity">{{'YERBAADDER.QUANTITY' | translate:param }}:</label>
       <div class="col-sm-4">
         <input type="number" class="form-control" name="quantity" [(ngModel)]="quantity" min="0" max="99999" required />
       </div>
@@ -27,8 +27,8 @@
       <div class="col-sm-8">
         <div class="form-check">
           <input type="checkbox" class="form-check-input" name="paid" [(ngModel)]="isPaid" id="checkBoxPaid" />
-          <label class="col-form-label" for="checkBoxPaid">Is Paid</label>
-          <button type="submit" class="btn red darken-1" (click)="onClick()" [disabled]="theForm.invalid">Add item</button>
+          <label class="col-form-label" for="checkBoxPaid">{{'YERBAADDER.PAID' | translate:param }}</label>
+          <button type="submit" class="btn red darken-1" (click)="onClick()" [disabled]="theForm.invalid">{{'YERBAADDER.ADDITEM' | translate:param }}</button>
         </div>
       </div>
     </div>
