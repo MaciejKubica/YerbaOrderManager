@@ -3,7 +3,10 @@
     "LOADING": "Wczytywanie",
     "CANCEL": "Anuluj",
     "UPDATE": "Aktualizuj",
-    "CREATE": "Utwórz"
+    "CREATE": "Utwórz",
+    "CLOSE": "Zamknij",
+    "DELETE": "Usuń",
+    "REGISTER": "Zarejestruj"
   },
 
   "NAVMENU": {
@@ -83,6 +86,65 @@
     "BANKACCOUNTTOSHORT": "Długość konta bankowego za krótka",
     "BANKACCOUNTTOLONG": "Długość konta bankowego za długa",
     "ROLES": "Role:"
+  },
+
+  "CREATEORDER": {
+    "TITLE": "Utwórz nowe zamówienie",
+    "ORDERDATE": "Data zamówienia",
+    "ORDEREXECUTEDBY": "Osoba wykonująca zamówienie",
+    "ADDNEWORDERITEM": "Dodaj element do zamówenia",
+    "USERCOL": "Użytkownik",
+    "YERBACOL": "Yerba",
+    "QUANTITYCOL": "Ilość",
+    "PAIDCOL": "Zapłacone",
+    "COSTCOL": "Koszt",
+    "TOTALCOL": "Całkowity",
+    "DELETEBTN": "Usuń",
+    "CLOSED": "Zamknij",
+    "TOTALCOST": "Całkowity koszt"
+  },
+
+  "ORDER": {
+    "TITLE": "Aktywne Zamówienia",
+    "IDCOL": "Identyfikator",
+    "DATECO": "Data zamówienia",
+    "CREATEDCOL": "Utworzone o",
+    "MADEBYCOL": "Utworzone przez",
+    "EXECUTEDBY": "Wykonane przez",
+    "TOTALQNTCOL": "Całkowita ilość",
+    "TOTALCOSTCOL": "Całkowity koszt",
+    "CLOSEDCOL": "Zamknięte?",
+    "PAIDCOL": "Zapłacone?"
+  },
+
+  "REGISTER": {
+    "TITLE": "Zarejestruj nowego użytkownika",
+    "EMAIL": "Email",
+    "USERNAME": "Nazwa użytkownika",
+    "PASSWORD": "Hasło"
+  },
+
+  "SHOWSUMMARY": {
+    "TITLE": "Zestawienie zamówienia",
+    "ORDERID": "Id zamównienia",
+    "ORDERCREATED": "Zamówienie utworzone o",
+    "ORDERDATE": "Data zamówienia",
+    "ORDEREXECUTEDBY": "Zamównienie realizowane przez",
+    "ORDERMADEBY": "Zamówienie utworzone przez",
+    "TOTALQUANTITY": "Całkowita ilość",
+    "TOTALCOST": "Całkowity koszt",
+    "USERCOL": "Użytkownik",
+    "YERBACOL": "Yerba",
+    "QUANTITYCOL": "Ilość",
+    "COSTCOL": "Koszt",
+    "TOTALCOL": "Całość",
+    "CONFIRMPAYMENT": "Potwierdź płatność",
+    "PAYMENTRECEIVED": "Płatność otrzymana",
+    "PAYMENTNOTRECEIVED": "Brak potwierdzenia płatności",
+    "BILLDATA": "Dane do zapłaty",
+    "BANKACCOUNT": "Numer konta bankowego",
+    "USER": "Użytkownik",
+    "VALUE": "Wartość"
   }
 
 }

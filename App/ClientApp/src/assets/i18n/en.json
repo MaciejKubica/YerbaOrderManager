@@ -3,7 +3,10 @@
     "LOADING": "Loading",
     "CANCEL": "Cancel",
     "UPDATE": "Update",
-    "CREATE": "Create"
+    "CREATE": "Create",
+    "CLOSE": "Close",
+    "DELETE": "Delete",
+    "REGISTER": "Register" 
   },
 
   "NAVMENU": {
@@ -83,6 +86,65 @@
     "BANKACCOUNTTOSHORT": "Bank account to short",
     "BANKACCOUNTTOLONG": "Bank account to long",
     "ROLES": "Roles:"
-  }
+  },
+
+  "CREATEORDER": {
+    "TITLE": "Create new order",
+    "ORDERDATE": "Order date",
+    "ORDEREXECUTEDBY": "Order executed by",
+    "ADDNEWORDERITEM": "Add new order item",
+    "USERCOL": "User",
+    "YERBACOL": "Yerba",
+    "QUANTITYCOL": "Quantity",
+    "PAIDCOL": "Paid",
+    "COSTCOL": "Cost",
+    "TOTALCOL": "Total",
+    "DELETEBTN": "Delete",
+    "CLOSED": "Closed",
+    "TOTALCOST": "Total cost"
+  },
+
+  "ORDER": {
+    "TITLE": "All Orders",
+    "IDCOL": "Id",
+    "DATECO": "Date",
+    "CREATEDCOL": "Created on",
+    "MADEBYCOL": "Made by",
+    "EXECUTEDBY": "Executed by",
+    "TOTALQNTCOL": "Total Qnt",
+    "TOTALCOSTCOL": "Total Cost",
+    "CLOSEDCOL": "Closed",
+    "PAIDCOL": "Paid"
+  },
+
+  "REGISTER": {
+    "TITLE": "Register new User",
+    "EMAIL": "Email",
+    "USERNAME": "Username",
+    "PASSWORD": "Password"
+  },
+
+  "SHOWSUMMARY": {
+    "TITLE": "Order summary",
+    "ORDERID": "Order id",
+    "ORDERCREATED": "Order created",
+    "ORDERDATE": "Order date",
+    "ORDEREXECUTEDBY": "Order executed by",
+    "ORDERMADEBY": "Order made by",
+    "TOTALQUANTITY": "Total Quantity",
+    "TOTALCOST": "Total Cost",
+    "USERCOL": "User",
+    "YERBACOL": "Yerba",
+    "QUANTITYCOL": "Quantity",
+    "COSTCOL": "Cost",
+    "TOTALCOL": "Total",
+    "CONFIRMPAYMENT": "Confirm payment",
+    "PAYMENTRECEIVED": "Payment received",
+    "PAYMENTNOTRECEIVED": "Payment not received",
+    "BILLDATA": "Bill data",
+    "BANKACCOUNT": "Bank account",
+    "USER": "User",
+    "VALUE": "Value"
+  } 
 
 }

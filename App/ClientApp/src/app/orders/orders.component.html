@@ -1,23 +1,23 @@
-<h1><span class="glyphicon glyphicon-modal-window"></span> All Orders</h1>
+<h1><span class="glyphicon glyphicon-modal-window"></span> {{'ORDER.TITLE' | translate:param }}</h1>
 <div>
   <button class="btn btn-success btn-sm" (click)="createOrder()">Create new order</button>
 </div>
-<p *ngIf="!orders"><em>Loading...</em></p>
+<p *ngIf="!orders"><em>{{'GLOBAL.LOADING' | translate:param }}...</em></p>
 
 <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 
 <table class="table table-condensed table-hover table-striped" *ngIf="orders">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Date</th>
-      <th scope="col">Created on</th>
-      <th scope="col">Made by</th>
-      <th scope="col">Executed by</th>
-      <th scope="col">Total Qnt</th>
-      <th scope="col">Total Cost</th>
-      <th scope="col">Closed</th>
-      <th scope="col">Paid</th>
+      <th scope="col">{{'ORDER.IDCOL' | translate:param }}</th>
+      <th scope="col">{{'ORDER.DATECO' | translate:param }}</th>
+      <th scope="col">{{'ORDER.CREATEDCOL' | translate:param }}</th>
+      <th scope="col">{{'ORDER.MADEBYCOL' | translate:param }}</th>
+      <th scope="col">{{'ORDER.EXECUTEDBY' | translate:param }}</th>
+      <th scope="col">{{'ORDER.TOTALQNTCOL' | translate:param }}</th>
+      <th scope="col">{{'ORDER.TOTALCOSTCOL' | translate:param }}</th>
+      <th scope="col">{{'ORDER.CLOSEDCOL' | translate:param }}</th>
+      <th scope="col">{{'ORDER.PAIDCOL' | translate:param }}</th>
       <th></th>
     </tr>
   </thead>
@@ -33,8 +33,8 @@
       <td>{{ order.isClosed }}</td>
       <td>{{ order.isPaid }}</td>
       <td>
-        <button class="btn btn-primary btn-sm" *ngIf="hiddeButton" (click)="closeOrder(order)">Close</button>
-        <button class="btn btn-danger btn-sm" *ngIf="hiddeButton" (click)="deleteOrder(order)">Delete</button>
+        <button class="btn btn-primary btn-sm" *ngIf="hiddeButton" (click)="closeOrder(order)">{{'GLOBAL.CLOSE' | translate:param }}</button>
+        <button class="btn btn-danger btn-sm" *ngIf="hiddeButton" (click)="deleteOrder(order)">{{'GLOBAL.DELETE' | translate:param }}</button>
       </td>
     </tr>
   </tbody>

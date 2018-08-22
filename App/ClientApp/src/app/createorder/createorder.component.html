@@ -1,9 +1,9 @@
-<h1><span class="glyphicon glyphicon-modal-window" ></span> Create new order</h1>
+<h1><span class="glyphicon glyphicon-modal-window"></span>{{'CREATEORDER.TITLE' | translate:param }}</h1>
 <div class="container-fluid">
   <form (submit)="onCreate()" #f="ngForm" novalidate>
     <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
     <div class="form-group">
-      <label for="orderDate">OrderDate:</label>
+      <label for="orderDate">{{'CREATEORDER.ORDERDATE' | translate:param }}:</label>
       <div class='input-group date'>
         <input name="date" type="text" class="form-control" a2e-datetimepicker (change)="dateChange($event.target.value)" [options]="a2eOptions" (click)="dateClick($event.target.value)" [(ngModel)]="date" date="ngModel" />
         <span class="input-group-addon">
@@ -12,14 +12,14 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="selectedUser">Order executed by:</label>
+      <label for="selectedUser">{{'CREATEORDER.ORDEREXECUTEDBY' | translate:param }}:</label>
       <select name="selectedUserExecutedBy" selectedUserExecutedBy="ngModel" class="form-control" [(ngModel)]="selectedUserExecutedBy" (change)="onChangeExecutedBy($event.target.value)">
         <option *ngFor="let user of users" [disabled]="!isInRole" [value]="user.id">{{user.name}}  [{{user.email}}]</option>
       </select>
     </div>
 
     <div class="form-group">
-      <h2 for="yerbaAdder">Add new order item:</h2>
+      <h2 for="yerbaAdder">{{'CREATEORDER.ADDNEWORDERITEM' | translate:param }}:</h2>
       <app-yerbaadder (notify)="onNotify($event)" name="yerbaAdder"></app-yerbaadder>
     </div>
 
@@ -27,12 +27,12 @@
       <table class="table table-condensed table-hover table-striped">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">User</th>
-            <th scope="col">Yerba</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Paid</th>
-            <th scope="col">Cost</th>
-            <th scope="col">Total</th>
+            <th scope="col">{{'CREATEORDER.USERCOL' | translate:param }}</th>
+            <th scope="col">{{'CREATEORDER.YERBACOL' | translate:param }}</th>
+            <th scope="col">{{'CREATEORDER.QUANTITYCOL' | translate:param }}</th>
+            <th scope="col">{{'CREATEORDER.PAIDCOL' | translate:param }}</th>
+            <th scope="col">{{'CREATEORDER.COSTCOL' | translate:param }}</th>
+            <th scope="col">{{'CREATEORDER.TOTALCOL' | translate:param }}</th>
           </tr>
         </thead>
         <tbody>
@@ -44,7 +44,7 @@
             <td>{{ orderItem.cost  | currency:'PLN':true:'2.2-4' }}</td>
             <td>{{ orderItem.cost * orderItem.quantity  | currency:'PLN':true:'2.2-4' }}</td>
             <td>
-              <button class="btn btn-danger btn-sm" (click)="deleteOrderItem(orderItem)">Delete</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteOrderItem(orderItem)">{{'CREATEORDER.DELETEBTN' | translate:param }}</button>
             </td>
           </tr>
         </tbody>
@@ -53,15 +53,15 @@
 
     <div class="form-check">
       <input type="checkbox" class="form-check-input" name="closed" [(ngModel)]="order.isClosed" id="checkBoxClosed" />
-      <label for="checkBoxClosed">Closed</label>
+      <label for="checkBoxClosed">{{'CREATEORDER.CLOSED' | translate:param }}</label>
     </div>
 
     <div class="form-group">
-      <div>Total Cost: {{totalcost  | currency:'PLN':true:'2.2-4'}}</div>
+      <div>{{'CREATEORDER.TOTALCOST' | translate:param }}: {{totalcost  | currency:'PLN':true:'2.2-4'}}</div>
     </div>
     <div class="form-group">
-      <input type="submit" class="btn btn-success" value="Create" />
-      <a [routerLink]='["/orders"]' class="btn btn-default">Cancel</a>
+      <input type="submit" class="btn btn-success" value="{{'GLOBAL.CREATE' | translate:param }}" />
+      <a [routerLink]='["/orders"]' class="btn btn-default">{{'GLOBAL.CANCEL' | translate:param }}</a>
     </div>
   </form>
    </div>

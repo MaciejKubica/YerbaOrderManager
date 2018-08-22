@@ -1,31 +1,31 @@
-<h1>Order summary</h1>
+<h1>{{ 'SHOWSUMMARY.TITLE' | translate:param }}</h1>
 <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 <div class="row">
 
   <div class="form-group">
-    <label>Order id: </label> {{currentOrder?.id}}
+    <label>{{ 'SHOWSUMMARY.ORDERID' | translate:param }}: </label> {{currentOrder?.id}}
   </div>
 
   <div class="form-group">
-    <label>Order created:</label> {{currentOrder.created | date: 'dd-MM-yyyy HH:mm:ss'}}
+    <label>{{ 'SHOWSUMMARY.ORDERCREATED' | translate:param }}:</label> {{currentOrder.created | date: 'dd-MM-yyyy HH:mm:ss'}}
   </div>
 
   <div class="form-group">
-    <label>OrderDate: </label> {{currentOrder.orderDate | date: 'dd-MM-yyyy'}}
+    <label>{{ 'SHOWSUMMARY.ORDERDATE' | translate:param }}: </label> {{currentOrder.orderDate | date: 'dd-MM-yyyy'}}
   </div>
   <div class="form-group">
-    <label>Order executed by: </label> {{currentOrder.userExecutedBy.name}} {{currentOrder.userExecutedBy.email}}
+    <label>{{ 'SHOWSUMMARY.ORDEREXECUTEDBY' | translate:param }}: </label> {{currentOrder.userExecutedBy.name}} {{currentOrder.userExecutedBy.email}}
   </div>
   <div class="form-group">
-    <label>Order made by: </label> {{currentOrder.userMadeBy.name}} {{currentOrder.userMadeBy.email}}
-  </div>
-
-  <div class="form-group">
-    <label>Total Quantity: </label> {{currentOrder.totalQuantity}}
+    <label>{{ 'SHOWSUMMARY.ORDERMADEBY' | translate:param }}: </label> {{currentOrder.userMadeBy.name}} {{currentOrder.userMadeBy.email}}
   </div>
 
   <div class="form-group">
-    <label>Total Cost: </label> {{currentOrder.totalCost | currency:'PLN':true:'2.2-4'}}
+    <label>{{ 'SHOWSUMMARY.TOTALQUANTITY' | translate:param }}: </label> {{currentOrder.totalQuantity}}
+  </div>
+
+  <div class="form-group">
+    <label>{{ 'SHOWSUMMARY.TOTALCOST' | translate:param }}: </label> {{currentOrder.totalCost | currency:'PLN':true:'2.2-4'}}
   </div>
 
   <br />
@@ -33,11 +33,11 @@
     <table class="table table-condensed table-hover table-striped">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">User</th>
-          <th scope="col">Yerba</th>
-          <th scope="col">Quantity</th>          
-          <th scope="col">Cost</th>
-          <th scope="col">Total</th>
+          <th scope="col">{{ 'SHOWSUMMARY.USERCOL' | translate:param }}</th>
+          <th scope="col">{{ 'SHOWSUMMARY.YERBACOL' | translate:param }}</th>
+          <th scope="col">{{ 'SHOWSUMMARY.QUANTITYCOL' | translate:param }}</th>          
+          <th scope="col">{{ 'SHOWSUMMARY.COSTCOL' | translate:param }}</th>
+          <th scope="col">{{ 'SHOWSUMMARY.TOTALCOL' | translate:param }}</th>
         </tr>
       </thead>
       <tbody>
@@ -48,9 +48,9 @@
           <td>{{ orderItem.cost  | currency:'PLN':true:'2.2-4' }}</td>
           <td>{{ orderItem.cost * orderItem.quantity  | currency:'PLN':true:'2.2-4' }}</td>
           <td>
-            <button class="btn btn-success btn-sm" *ngIf="paimentReceived(orderItem)" (click)="confirmPaiment(orderItem)">Confirm payment</button>
-            <button class="btn btn-warning btn-sm" *ngIf="paimentDone(orderItem)" disabled>Payment received</button>
-            <button class="btn btn-danger btn-sm" *ngIf="paimentNotReceived(orderItem)" disabled>Payment not received</button>
+            <button class="btn btn-success btn-sm" *ngIf="paimentReceived(orderItem)" (click)="confirmPaiment(orderItem)">{{ 'SHOWSUMMARY.CONFIRMPAYMENT' | translate:param }}</button>
+            <button class="btn btn-warning btn-sm" *ngIf="paimentDone(orderItem)" disabled>{{ 'SHOWSUMMARY.PAYMENTRECEIVED' | translate:param }}</button>
+            <button class="btn btn-danger btn-sm" *ngIf="paimentNotReceived(orderItem)" disabled>{{ 'SHOWSUMMARY.PAYMENTNOTRECEIVED' | translate:param }}</button>
           </td>
         </tr>
       </tbody>
@@ -58,24 +58,24 @@
   </div>
 
   <div class="form-group" *ngIf="currentUser.id != currentOrder.madeby">
-    <h2>Bill data:</h2>
+    <h2>{{ 'SHOWSUMMARY.BILLDATA' | translate:param }}:</h2>
     <div class="form-group">
-      <label>Bank Account: </label> {{usertoPay?.bankAccount}}
+      <label>{{ 'SHOWSUMMARY.BANKACCOUNT' | translate:param }}: </label> {{usertoPay?.bankAccount}}
     </div>
     <div class="form-group">
-      <label>User: </label> {{usertoPay?.name}} [{{usertoPay?.email}}]
+      <label>{{ 'SHOWSUMMARY.USER' | translate:param }}: </label> {{usertoPay?.name}} [{{usertoPay?.email}}]
     </div>
     <div class="form-group">
-      <label>Value: </label> {{calculatedBill | currency:'PLN':true:'2.2-4' }}
+      <label>{{ 'SHOWSUMMARY.VALUE' | translate:param }}: </label> {{calculatedBill | currency:'PLN':true:'2.2-4' }}
     </div>
   </div>
 
 <div class="form-group" *ngIf="currentUser.id === currentOrder.madeby">
-  <h2><label>Total Quantity: </label> {{currentOrder.totalQuantity}}</h2>
+  <h2><label>{{ 'SHOWSUMMARY.TOTALQUANTITY' | translate:param }}: </label> {{currentOrder.totalQuantity}}</h2>
 </div>
 
 <div class="form-group" *ngIf="currentUser.id === currentOrder.madeby">
-  <h2><label>Total Cost: </label> {{currentOrder.totalCost * currentOrder.totalQuantity | currency:'PLN':true:'2.2-4'}}</h2>
+  <h2><label>{{ 'SHOWSUMMARY.TOTALCOST' | translate:param }}: </label> {{currentOrder.totalCost * currentOrder.totalQuantity | currency:'PLN':true:'2.2-4'}}</h2>
 </div>
 
 </div>
