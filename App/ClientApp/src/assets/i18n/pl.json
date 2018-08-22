@@ -6,7 +6,8 @@
     "CREATE": "Utwórz",
     "CLOSE": "Zamknij",
     "DELETE": "Usuń",
-    "REGISTER": "Zarejestruj"
+    "REGISTER": "Zarejestruj",
+    "EDIT": "Edytuj"
   },
 
   "NAVMENU": {
@@ -114,7 +115,8 @@
     "TOTALQNTCOL": "Całkowita ilość",
     "TOTALCOSTCOL": "Całkowity koszt",
     "CLOSEDCOL": "Zamknięte?",
-    "PAIDCOL": "Zapłacone?"
+    "PAIDCOL": "Zapłacone?",
+    "CREATENEWORDER": "Utwórz nowe zamówienie" 
   },
 
   "REGISTER": {
@@ -145,6 +147,31 @@
     "BANKACCOUNT": "Numer konta bankowego",
     "USER": "Użytkownik",
     "VALUE": "Wartość"
+  },
+
+  "YERBAS": {
+    "TITLE": "Lista Yerb",
+    "CREATENEWYERBA": "Utwórz nową yerbę",
+    "NAMECOL": "Nazwa",
+    "MARKCOL": "Marka",
+    "PRODUCENTCOL": "Producent",
+    "COUNTRYCOL": "Kraj pochodzenia",
+    "COSTCOL": "Cena"
+  },
+  "USERS": {
+    "TITLE": "Lista użytkowników",
+    "CREATENEWUSER": "Utwórz nowego użytkownika",
+    "EMAILCOL": "Email",
+    "NAMECOL": "Nazwa",
+    "BUYNEXTORDER": "Czy kupuje następne zamówienie",
+    "BANKACCOUNTCOL": "Konto bankowe",
+    "LOCKACCOUNT": "Zablokuj użytkownika"
+  },
+  "LOGIN": {
+    "TITLE": "Zaloguj",
+    "USERNAME": "Nazwa użytkownika",
+    "PASSWORD": "Hasło",
+    "LOGIN": "Zaloguj"
   }
 
 }

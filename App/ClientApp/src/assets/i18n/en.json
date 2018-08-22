@@ -6,7 +6,8 @@
     "CREATE": "Create",
     "CLOSE": "Close",
     "DELETE": "Delete",
-    "REGISTER": "Register" 
+    "REGISTER": "Register",
+    "EDIT": "Edit"
   },
 
   "NAVMENU": {
@@ -114,7 +115,8 @@
     "TOTALQNTCOL": "Total Qnt",
     "TOTALCOSTCOL": "Total Cost",
     "CLOSEDCOL": "Closed",
-    "PAIDCOL": "Paid"
+    "PAIDCOL": "Paid",
+    "CREATENEWORDER": "Create new order"
   },
 
   "REGISTER": {
@@ -145,6 +147,32 @@
     "BANKACCOUNT": "Bank account",
     "USER": "User",
     "VALUE": "Value"
-  } 
+  },
+
+  "YERBAS": {
+    "TITLE": "Yerbas",
+    "CREATENEWYERBA": "Create new yerba",
+    "NAMECOL": "Name",
+    "MARKCOL": "Mark",
+    "PRODUCENTCOL": "Producent",
+    "COUNTRYCOL": "Country",
+    "COSTCOL": "Cost"
+  },
+
+  "USERS": {
+    "TITLE": "Users",
+    "EMAILCOL": "Email",
+    "CREATENEWUSER": "Create new user",
+    "NAMECOL": "Name",
+    "BUYNEXTORDER": "Is going to buy next order",
+    "BANKACCOUNTCOL": "Bank account",
+    "LOCKACCOUNT": "Lock account"
+  },
+  "LOGIN": {
+    "TITLE": "Login",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "LOGIN": "Login" 
+  }
 
 }

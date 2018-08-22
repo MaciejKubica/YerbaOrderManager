@@ -1,18 +1,18 @@
-<h1><span class="glyphicon glyphicon-user"></span> Users</h1>
+<h1><span class="glyphicon glyphicon-user"></span> {{ 'USERS.TITLE' | translate:param }}</h1>
 <div>
-  <button class="btn btn-success btn-sm" (click)="createUser()">Create new user</button>
+  <button class="btn btn-success btn-sm" (click)="createUser()">{{ 'USERS.CREATENEWUSER' | translate:param }}</button>
 </div>
-<p *ngIf="!users"><em>Loading...</em></p>
+<p *ngIf="!users"><em>{{ 'GLOBAL.LOADING' | translate:param }}...</em></p>
 
 <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 
 <table class="table table-condensed table-hover table-striped" *ngIf="users">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Email</th>
-      <th scope="col">Name</th>
-      <th scope="col">Is going to buy next order</th>
-      <th scope="col">Bank account</th>
+      <th scope="col">{{ 'USERS.EMAILCOL' | translate:param }}</th>
+      <th scope="col">{{ 'USERS.NAMECOL' | translate:param }}</th>
+      <th scope="col">{{ 'USERS.BUYNEXTORDER' | translate:param }}</th>
+      <th scope="col">{{ 'USERS.BANKACCOUNTCOL' | translate:param }}</th>
       <th></th>
     </tr>
   </thead>
@@ -23,9 +23,9 @@
       <td>{{ user.orderTokenLocker }}</td>
       <td>{{ user.bankAccount }}</td>
       <td>
-        <button class="btn btn-primary btn-sm" (click)="lockUser(user)">Lock account</button>
-        <button class="btn btn-warning btn-sm" (click)="editUser(user)">Edit</button>
-        <button class="btn btn-danger btn-sm" (click)="deleteUser(user)">Delete</button>
+        <button class="btn btn-primary btn-sm" (click)="lockUser(user)">{{ 'USERS.LOCKACCOUNT' | translate:param }}</button>
+        <button class="btn btn-warning btn-sm" (click)="editUser(user)">{{ 'GLOBAL.EDIT' | translate:param }}</button>
+        <button class="btn btn-danger btn-sm" (click)="deleteUser(user)">{{ 'GLOBAL.DELETE' | translate:param }}</button>
       </td>
     </tr>
   </tbody>

@@ -1,18 +1,18 @@
-<h1><span class="glyphicon glyphicon-grain"></span> Yerbas</h1>
+<h1><span class="glyphicon glyphicon-grain"></span> {{ 'YERBAS.TITLE' | translate:param }}</h1>
 <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 <div>
-  <button class="btn btn-success btn-sm" *ngIf="hiddeButton" (click)="createYerba()">Create new yerba</button>
+  <button class="btn btn-success btn-sm" *ngIf="hiddeButton" (click)="createYerba()">{{ 'YERBAS.CREATENEWYERBA' | translate:param }}</button>
 </div>
-<p *ngIf="!yerbas"><em>Loading...</em></p>
+<p *ngIf="!yerbas"><em>{{ 'GLOBAL.LOADING' | translate:param }}...</em></p>
 
 <table class="table table-condensed table-hover table-striped" *ngIf="yerbas">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Mark</th>
-      <th scope="col">Producent</th>
-      <th scope="col">Country</th>
-      <th scope="col">Cost</th>
+      <th scope="col">{{ 'YERBAS.NAMECOL' | translate:param }}</th>
+      <th scope="col">{{ 'YERBAS.MARKCOL' | translate:param }}</th>
+      <th scope="col">{{ 'YERBAS.PRODUCENTCOL' | translate:param }}</th>
+      <th scope="col">{{ 'YERBAS.COUNTRYCOL' | translate:param }}</th>
+      <th scope="col">{{ 'YERBAS.COSTCOL' | translate:param }}</th>
       <th></th>
     </tr>
   </thead>
@@ -24,8 +24,8 @@
       <td>{{ yerba.country }}</td>
       <td>{{ yerba.cost  | currency:'PLN':true:'2.2-4' }}</td>
       <td>
-        <button class="btn btn-warning btn-sm" *ngIf="hiddeButton" (click)="editYerba(yerba)">Edit</button>
-        <button class="btn btn-danger btn-sm" *ngIf="hiddeButton"  (click)="deleteYerba(yerba)">Delete</button>
+        <button class="btn btn-warning btn-sm" *ngIf="hiddeButton" (click)="editYerba(yerba)">{{ 'GLOBAL.EDIT' | translate:param }}</button>
+        <button class="btn btn-danger btn-sm" *ngIf="hiddeButton" (click)="deleteYerba(yerba)">{{ 'GLOBAL.DELETE' | translate:param }}</button>
       </td>
     </tr>
   </tbody>
