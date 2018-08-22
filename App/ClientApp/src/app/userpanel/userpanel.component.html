@@ -1,20 +1,20 @@
-<h1><span class="glyphicon glyphicon-cog"></span> User settings</h1>
+<h1><span class="glyphicon glyphicon-cog"></span> {{'USERPANEL.TITLE' | translate:param }}</h1>
 <form #theForm="ngForm" novalidate>
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
   <div class="container">
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="email">{{'USERPANEL.EMAIL' | translate:param }}:</label>
           <input type="email" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required ngModel email />
           <div *ngIf="email.invalid && (email.dirty || email.touched)"
                class="alert alert-danger">
 
             <div *ngIf="email.errors.required">
-              Email is required.
+              {{'USERPANEL.EMAILISREQUIRED' | translate:param }}
             </div>
             <div *ngIf="email.errors.email">
-              Email is not proper
+              {{'USERPANEL.EMAILISNOTPROPER' | translate:param }}
             </div>
           </div>
         </div>
@@ -22,16 +22,16 @@
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="name">Name:</label>
+          <label for="name">{{'USERPANEL.NAME' | translate:param }}:</label>
           <input type="text" class="form-control" name="name" [(ngModel)]="user.name" #name="ngModel" required pattern="^[a-z\\d-_\\s]+$" />
           <div *ngIf="name.invalid && (name.dirty || name.touched)"
                class="alert alert-danger">
 
             <div *ngIf="name.errors.required">
-              Name is required.
+              {{'USERPANEL.NAMEISREQUIRED' | translate:param }}
             </div>
             <div *ngIf="name.errors.pattern">
-              Name should have letters
+              {{'USERPANEL.NAMESHOULDHAVELETTERS' | translate:param }}
             </div>
           </div>
         </div>
@@ -41,16 +41,16 @@
     <div class="row">
       <div class="col-md-10">
         <div class="form-group">
-          <label for="bankAccount">Bank account number:</label>
+          <label for="bankAccount">{{'USERPANEL.BANKACCOUNT' | translate:param }}:</label>
           <input type="text" class="form-control" name="bankAccount" [(ngModel)]="user.bankAccount" #bankAccount="ngModel" minlength="11" maxlength="17" />
           <div *ngIf="bankAccount.invalid && (bankAccount.dirty || bankAccount.touched)"
                class="alert alert-danger">
 
             <div *ngIf="bankAccount.errors.minlength">
-              Bank account to short
+              {{'USERPANEL.BANKACCOUNTTOSHORT' | translate:param }}
             </div>
             <div *ngIf="bankAccount.errors.maxlength">
-              Bank account to long
+              {{'USERPANEL.BANKACCOUNTTOLONG' | translate:param }}
             </div>
           </div>
         </div>
@@ -58,21 +58,21 @@
 
       <div class="col-md-2">
         <div class="form-group bottom-right">
-          <input type="submit" class="btn btn-primary btn-large" value="Change settings" (click)="onChangeSettings()" [disabled]="bankAccount.invalid || name.invalid || email.invalid" />
+          <input type="submit" class="btn btn-primary btn-large" value="{{'USERPANEL.CHANGESETTINGS' | translate:param }}" (click)="onChangeSettings()" [disabled]="bankAccount.invalid || name.invalid || email.invalid" />
         </div>
       </div>
     </div>
 
     <div class="row">
-      <h3>User options</h3>
+      <h3>{{'USERPANEL.USEROPTIONS' | translate:param }}</h3>
       <div class="col-md-2">
         <div class="form-inline bottom-right">
-          <input type="submit" class="btn btn-info btn-large" value="Make me next order token" (click)="onMakeToken()" />
+          <input type="submit" class="btn btn-info btn-large" value="{{'USERPANEL.ASSIGNNEXTORDERTOME' | translate:param }}" (click)="onMakeToken()" />
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-inline bottom-right">
-          <input type="submit" class="btn btn-primary btn-large" value="Create new order" (click)="onCreateNewOrder()" />
+          <input type="submit" class="btn btn-primary btn-large" value="{{'USERPANEL.CREATENEWORDER' | translate:param }}" (click)="onCreateNewOrder()" />
         </div>
       </div>
     </div>
@@ -80,43 +80,43 @@
     <div class="row" ngModelGroup="account" password-matcher #account="ngModelGroup">
       <div class="col-md-5">
         <div class="form-group">
-          <label for="password">Old Password:</label>
+          <label for="password">{{'USERPANEL.OLDPASSWORD' | translate:param }}:</label>
           <input type="password" class="form-control" name="password" [(ngModel)]="retypeOldPassword" #password="ngModel" (blur)="onCheckPassword()" /> <!--equalTo="{{user.password}}" "-->
           <div *ngIf="changePasswordFails"
                class="alert alert-danger">
-            Password change fails. Check old password
+            {{'USERPANEL.CHECKOLDPASSWORD' | translate:param }}            
           </div>
         </div>
       </div>
       <div class="col-md-5">
         <div class="form-group">
-          <label for="newPassword">New Password:</label>
+          <label for="newPassword">{{'USERPANEL.NEWPASSWORD' | translate:param }}:</label>
           <input type="password" class="form-control" name="newPassword" [(ngModel)]="newPassword" #newpassword="ngModel" />
           <password-strength-bar [passwordToCheck]="newPassword" [barLabel]="barLabel"></password-strength-bar>
           <div *ngIf="account.control?.errors"
                class="alert alert-danger">
-            Passwords are match. Pick another one
+            {{'USERPANEL.PASSWORDAREMATCH' | translate:param }}            
           </div>
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-group bottom-right">
-          <input type="submit" class="btn btn-success btn-large" value="Change password" (click)="onChangePassword()" [disabled]="account.control?.errors || password.invalid " />
+          <input type="submit" class="btn btn-success btn-large" value="{{'USERPANEL.CHANGEPASSWORD' | translate:param }}" (click)="onChangePassword()" [disabled]="account.control?.errors || password.invalid " />
         </div>
       </div>
     </div>
     <br />
     <br />
     <div class="row-md-12" *ngIf="userOrders">
-      <h2>Order create by user:</h2>
+      <h2>{{'USERPANEL.ORDERCREATEBYUSER' | translate:param }}:</h2>
       <table class="table table-condensed table-hover table-striped">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Order</th>
-            <th scope="col">Order date</th>
-            <th scope="col">Order executed by</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Cost</th>
+            <th scope="col">{{'USERPANEL.ORDERCOL' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.ORDERDATECOL' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.ORDEREXECUTEDBYCOL' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.ORDERQUANTITYCOL' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.COSTCOL' | translate:param }}</th>
             <th></th>
           </tr>
         </thead>
@@ -127,7 +127,7 @@
             <td>{{ order.userExecutedBy.name }}</td>
             <td>{{ order.totalQuantity }}</td>
             <td>{{ order.totalCost | currency:'PLN':true:'2.2-4' }}</td>
-            <td><button class="btn btn-primary btn-sm" (click)="closeOrder(order)">Close</button></td>
+            <td><button class="btn btn-primary btn-sm" (click)="closeOrder(order)">{{'GLOBAL.CLOSE' | translate:param }}</button></td>
           </tr>
         </tbody>
       </table>
@@ -136,22 +136,22 @@
 
     <br /><br />
     <div class="row-md-12" *ngIf="userOrderItems">
-      <h2>Order items:</h2>
-      <div>Subtotal: {{subtotal | currency:'PLN':true:'2.2-4'}}</div>
-      <div>Quantity: {{sumquantity}}</div>
+      <h2>{{'USERPANEL.ORDERITEMS' | translate:param }}:</h2>
+      <div>{{'USERPANEL.SUBTOTAL' | translate:param }}: {{subtotal | currency:'PLN':true:'2.2-4'}}</div>
+      <div>{{'USERPANEL.QUANTITY' | translate:param }}: {{sumquantity}}</div>
       <table class="table table-condensed table-hover table-striped">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Order</th>
-            <th scope="col">Order date</th>
-            <th scope="col">Order made by</th>
-            <th scope="col">Order executed by</th>
-            <th scope="col">Yerba</th>
-            <th scope="col">Yerba producer</th>
-            <th scope="col">Yerba mark</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Cost</th>
-            <th scope="col">Total</th>
+            <th scope="col">{{'USERPANEL.ORDERCOL' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.ORDERDATECOL' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.ORDERMADEBYCOL' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.ORDEREXECUTEDBYCOL' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.YERBA' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.YERBAPRODUCER' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.YERBAMARK' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.QUANTITYCOL' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.COSTCOL' | translate:param }}</th>
+            <th scope="col">{{'USERPANEL.TOTALCOL' | translate:param }}</th>
             <th></th>
           </tr>
         </thead>
@@ -168,9 +168,9 @@
             <td>{{ orderItem.cost | currency:'PLN':true:'2.2-4' }}</td>
             <td>{{ orderItem.cost * orderItem.quantity | currency:'PLN':true:'2.2-4' }}</td>
             <td>
-              <button class="btn btn-warning btn-sm" *ngIf="!checkIsPaid(orderItem)" (click)="sendPaimentRequest(orderItem)">I Paid it</button>
-              <button class="btn btn-primary btn-sm" *ngIf="checkIsPaid(orderItem)" disabled>Waiting for confirm</button>
-              <button class="btn btn-success btn-sm" *ngIf="orderItem.paid" disabled>Paied</button>
+              <button class="btn btn-warning btn-sm" *ngIf="!checkIsPaid(orderItem)" (click)="sendPaimentRequest(orderItem)">{{'USERPANEL.IPAIDIT' | translate:param }}</button>
+              <button class="btn btn-primary btn-sm" *ngIf="checkIsPaid(orderItem)" disabled>{{'USERPANEL.WAITINGFORCONFIRM' | translate:param }}</button>
+              <button class="btn btn-success btn-sm" *ngIf="orderItem.paid" disabled>{{'USERPANEL.PAID' | translate:param }}</button>
             </td>
           </tr>
         </tbody>
@@ -178,7 +178,7 @@
     </div>
 
     <div class="row" *ngIf="!userOrderItems">
-      No elements to display
+      {{'USERPANEL.NOELEMENTSTODISPLAY' | translate:param }}
     </div>
 
   </div>
