@@ -27,7 +27,7 @@
 
   "HOME": {
     "WELCOME": "Witaj w kompleksowym systemie do zamawiania Yerby made by MKU CYOM",
-    "SYSTEMDESCRIPTION": "The system is helpful for ordering yerbas for many users. The purpose is to make an order by one user which have token to make and order yerba from Allegro.",
+    "SYSTEMDESCRIPTION": "System ma za zadanie pomóc użytkownikom w przeprowadzeniu procesu zamawiania Yerby z Allegro.",
     "NEWORDERCREATE": "Jeżeli chcesz utworzyć nowe zamówienie musisz mieć token otrzymany przez administratora",
     "CREATEORDERINFO": "Jeżeli administrator dał Ci już token możesz",
     "USERPANEL": "Panel użytkownika",
