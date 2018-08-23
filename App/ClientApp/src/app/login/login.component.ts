@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core"
 import { DataService } from "../shared/dataService"
 import { Router } from "@angular/router"
+import { TranslateService, LangChangeEvent } from "@ngx-translate/core";
 
 @Component({
   selector: "app-login",
@@ -9,7 +10,7 @@ import { Router } from "@angular/router"
 })
 export class LoginComponent {
 
-  constructor(private data: DataService, private router: Router) {}
+  constructor(private data: DataService, private router: Router, private translate: TranslateService) {}
 
   errorMessage: string = "";  
 
@@ -30,7 +31,7 @@ export class LoginComponent {
           });
         }
         },
-      err => this.errorMessage = "Failed to login ");
+      err => this.errorMessage = this.translate.instant("GLOBAL.FAILEDTOLOGIN"));
 
   }
 }

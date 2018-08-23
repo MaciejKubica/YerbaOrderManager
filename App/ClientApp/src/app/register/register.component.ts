@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
   public errorMessage: string;
 
   public creds: User;
+
  
 
   ngOnInit(): void {
@@ -47,7 +48,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(["/userpanel"]);
         }
       },
-      err => this.errorMessage = "Failed to register account");
+      err => this.errorMessage = this.translate.instant("GLOBAL.FAILEDTOREGISTERACCOUNT"));
   }
 
 }

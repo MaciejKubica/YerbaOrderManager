@@ -8,7 +8,9 @@
     "DELETE": "Usuń",
     "REGISTER": "Zarejestruj",
     "EDIT": "Edytuj",
-    "PASSWORDSTREANGTH": "Siła hasła:"
+    "PASSWORDSTREANGTH": "Siła hasła:",
+    "FAILEDTOREGISTERACCOUNT": "Błąd podczas tworzenia konta",
+    "FAILEDTOLOGIN": "Bład podczas logowania" 
   },
 
   "NAVMENU": {

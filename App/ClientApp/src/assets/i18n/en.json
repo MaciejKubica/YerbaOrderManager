@@ -8,7 +8,9 @@
     "DELETE": "Delete",
     "REGISTER": "Register",
     "EDIT": "Edit",
-    "PASSWORDSTREANGTH": "Password strength:" 
+    "PASSWORDSTREANGTH": "Password strength:",
+    "FAILEDTOREGISTERACCOUNT": "Fail to register account",
+    "FAILEDTOLOGIN": "Failed to login"
   },
 
   "NAVMENU": {
