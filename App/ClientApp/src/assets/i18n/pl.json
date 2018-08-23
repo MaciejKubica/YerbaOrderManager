@@ -7,7 +7,8 @@
     "CLOSE": "Zamknij",
     "DELETE": "Usuń",
     "REGISTER": "Zarejestruj",
-    "EDIT": "Edytuj"
+    "EDIT": "Edytuj",
+    "PASSWORDSTREANGTH": "Siła hasła:"
   },
 
   "NAVMENU": {

@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router"
 import { PasswordStrengthBar } from '../passwordStrengthBar';
 import { User } from '../shared/user';
 import {RoleSelection} from "../shared/roleSection";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-create-edit-user",
@@ -13,10 +14,13 @@ import {RoleSelection} from "../shared/roleSection";
 
 export class CreateEditUserComponent implements OnInit {
 
-  constructor(private data: DataService, private router: Router, private activatedRouter: ActivatedRoute) {
+  constructor(private data: DataService, private router: Router, private activatedRouter: ActivatedRoute, private translate: TranslateService ) {
 
     this.usertoadd = new User();
-    this.barLabel = "Password strength:";
+     this.translate.get("GLOBAL.PASSWORDSTREANGTH").subscribe(
+      data => {
+        this.barLabel = data;
+      });
     this.currentUser = JSON.parse(localStorage.getItem("LoggedUser"));
   }
 

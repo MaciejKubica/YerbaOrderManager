@@ -11,6 +11,7 @@ import { NG_VALIDATORS, AbstractControl } from "@angular/forms";
 import { ChangePassword } from '../shared/changepassword';
 import { CheckPassword } from "../shared/checkpassword";
 import { Observable } from "rxjs/Observable";
+import { TranslateService, LangChangeEvent } from "@ngx-translate/core";
 
 function passwordUnMatcher(c: AbstractControl) {
   if (!c.get('password') || !c.get('newPassword')) return null;
@@ -36,7 +37,7 @@ export class PasswordWatcher {
 
 export class UserPanelComponent implements OnInit {
 
-  constructor(private data: DataService, private router: Router) {
+  constructor(private data: DataService, private router: Router, private translate: TranslateService) {
     this.newPassword = "";
   }
 
@@ -56,7 +57,7 @@ export class UserPanelComponent implements OnInit {
       userid: 0
   };
 
-  public barLabel: string = "Password strength:";
+  public barLabel: string;
 
   get subtotal(): number {
     return _.sum(_.map(this.userOrderItems, i => i.cost * i.quantity));
@@ -189,6 +190,18 @@ export class UserPanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.translate.get("GLOBAL.PASSWORDSTREANGTH").subscribe(
+      data => {
+        this.barLabel = data;
+      });
+
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      //this.barLabel = this.translate.instant("GLOBAL.PASSWORDSTREANGTH");
+      console.log(this.translate.instant("GLOBAL.PASSWORDSTREANGTH"));
+      this.barLabel = this.translate.instant("GLOBAL.PASSWORDSTREANGTH");
+    });
+
     this.user = JSON.parse(localStorage.getItem("LoggedUser"));
     this.getPaiments();
     this.loadYerbas();    

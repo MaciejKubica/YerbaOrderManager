@@ -3,6 +3,7 @@ import { DataService } from "../shared/dataService"
 import { Router, ActivatedRoute } from "@angular/router"
 import { PasswordStrengthBar } from '../passwordStrengthBar';
 import { User } from '../shared/user';
+import { TranslateService, LangChangeEvent } from "@ngx-translate/core";
 
 @Component({
   selector: "app-register",
@@ -12,8 +13,10 @@ import { User } from '../shared/user';
 
 export class RegisterComponent implements OnInit {
 
-  constructor(private data: DataService, private router: Router, private activatedRouter: ActivatedRoute) {
-    this.barLabel = "Password strength:";
+  constructor(private data: DataService, private router: Router, private activatedRouter: ActivatedRoute, private translate: TranslateService) {
+
+    this.barLabel = this.translate.instant("GLOBAL.PASSWORDSTREANGTH");
+
     this.creds = new User();
   }
 
@@ -25,7 +28,16 @@ export class RegisterComponent implements OnInit {
  
 
   ngOnInit(): void {
-   
+    this.translate.get("GLOBAL.PASSWORDSTREANGTH").subscribe(
+      data => {
+        this.barLabel = data;
+      });
+
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      //this.barLabel = this.translate.instant("GLOBAL.PASSWORDSTREANGTH");
+      console.log(this.translate.instant("GLOBAL.PASSWORDSTREANGTH"));
+      this.barLabel = this.translate.instant("GLOBAL.PASSWORDSTREANGTH");
+    });
   }
 
   onRegister() {
